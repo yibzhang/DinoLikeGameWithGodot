@@ -1,7 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/Globals.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/MilkyNice.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scripts/Start.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/MenuButtons.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Title.gd" type="Script" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 80
@@ -37,7 +40,13 @@ script = ExtResource( 1 )
 
 [node name="UI" type="Node2D" parent="."]
 
-[node name="Title" type="Label" parent="UI"]
+[node name="Menu" type="Node2D" parent="UI"]
+script = ExtResource( 4 )
+
+[node name="Title" type="Node2D" parent="UI/Menu"]
+script = ExtResource( 5 )
+
+[node name="Title" type="Label" parent="UI/Menu/Title"]
 margin_top = 133.0
 margin_right = 1024.0
 margin_bottom = 233.0
@@ -50,9 +59,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MenuButtons" type="Node2D" parent="UI"]
+[node name="move_tween" type="Tween" parent="UI/Menu/Title"]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MenuButtons"]
+[node name="Start" type="Node2D" parent="UI/Menu"]
+script = ExtResource( 3 )
+
+[node name="StartMenu" type="VBoxContainer" parent="UI/Menu/Start"]
 margin_left = 384.0
 margin_top = 300.0
 margin_right = 640.0
@@ -61,8 +73,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Start" type="Button" parent="UI/MenuButtons/VBoxContainer"]
-margin_right = 256.0
+[node name="Start" type="Button" parent="UI/Menu/Start/StartMenu"]
+margin_right = 255.0
 margin_bottom = 64.0
 custom_styles/focus = SubResource( 2 )
 custom_fonts/font = SubResource( 3 )
@@ -70,15 +82,28 @@ custom_colors/font_color = Color( 0.654902, 0.654902, 0.654902, 1 )
 text = "Start"
 flat = true
 
-[node name="Quit" type="Button" parent="UI/MenuButtons/VBoxContainer"]
+[node name="Quit" type="Button" parent="UI/Menu/Start/StartMenu"]
 margin_top = 68.0
-margin_right = 256.0
+margin_right = 255.0
 margin_bottom = 132.0
 custom_styles/focus = SubResource( 4 )
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0.654902, 0.654902, 0.654902, 1 )
 text = "Quit"
 flat = true
+
+[node name="move_tween" type="Tween" parent="UI/Menu/Start"]
+
+[node name="BackToStart" type="Node2D" parent="UI/Menu"]
+
+[node name="move_tween" type="Tween" parent="UI/Menu/BackToStart"]
+
+[node name="BackToStart" type="TextureButton" parent="UI/Menu/BackToStart"]
+margin_right = 50.0
+margin_bottom = 50.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Floor" type="Node2D" parent="."]
 
@@ -87,3 +112,4 @@ flat = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/StaticBody2D"]
 position = Vector2( 512, 580 )
 shape = SubResource( 6 )
+[connection signal="pressed" from="UI/Menu/Start/StartMenu/Start" to="UI/Menu" method="_on_Start_pressed"]
