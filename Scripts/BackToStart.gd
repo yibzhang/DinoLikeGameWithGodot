@@ -10,17 +10,10 @@ extends Node2D
 func _ready():
 	pass # Replace with function body.
 
-
+func move(target):
+	var move_tween = get_node("move_tween")
+	move_tween.interpolate_property(self, "position", position, target, 2, Tween.TRANS_QUINT, Tween.EASE_OUT);
+	move_tween.start()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
-
-func _on_Start_pressed():
-	get_node("Start").move(Vector2(-600, 0))
-	get_node("Title").move(Vector2(0, -300))
-	get_node("BackToStart").move(Vector2(0, 64))
-
-func _on_BackToStart_pressed():
-	get_node("Start").move(Vector2(0, 0))
-	get_node("Title").move(Vector2(0, 0))
-	get_node("BackToStart").move(Vector2(0, 0))
