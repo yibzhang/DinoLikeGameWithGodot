@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Scripts/Globals.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/MilkyNice.ttf" type="DynamicFontData" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://Scripts/MenuButtons.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/Title.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/BackToStart.gd" type="Script" id=6]
+[ext_resource path="res://Sprites/player_horse_sheet.png" type="Texture" id=7]
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/Game.gd" type="Script" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 80
@@ -23,14 +26,91 @@ font_data = ExtResource( 2 )
 size = 48
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=6]
 size = 48
 font_data = ExtResource( 2 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 649, 3.99219 )
 
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 325, 324 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 325, 0, 325, 324 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 650, 0, 325, 324 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 975, 0, 325, 324 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 325, 324 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 325, 0, 325, 324 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 650, 0, 325, 324 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 975, 0, 325, 324 )
+
+[sub_resource type="AtlasTexture" id=16]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 1300, 0, 325, 324 )
+
+[sub_resource type="AtlasTexture" id=17]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 1625, 0, 325, 324 )
+
+[sub_resource type="AtlasTexture" id=18]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 1950, 0, 325, 324 )
+
+[sub_resource type="AtlasTexture" id=19]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 2275, 0, 325, 324 )
+
+[sub_resource type="SpriteFrames" id=20]
+animations = [ {
+"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
+"loop": false,
+"name": "jump",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ) ],
+"loop": true,
+"name": "run",
+"speed": 15.0
+} ]
+
+[sub_resource type="CircleShape2D" id=21]
+radius = 120.0
+
 [node name="Game" type="Node2D"]
+script = ExtResource( 9 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_right = 1024.0
@@ -79,7 +159,7 @@ __meta__ = {
 }
 
 [node name="Start" type="Button" parent="UI/Menu/Start/StartMenu"]
-margin_right = 255.0
+margin_right = 256.0
 margin_bottom = 64.0
 custom_styles/focus = SubResource( 2 )
 custom_fonts/font = SubResource( 3 )
@@ -89,7 +169,7 @@ flat = true
 
 [node name="Quit" type="Button" parent="UI/Menu/Start/StartMenu"]
 margin_top = 68.0
-margin_right = 255.0
+margin_right = 256.0
 margin_bottom = 132.0
 custom_styles/focus = SubResource( 4 )
 custom_fonts/font = SubResource( 5 )
@@ -106,7 +186,7 @@ script = ExtResource( 6 )
 margin_left = 960.0
 margin_top = -64.0
 margin_right = 1024.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0.654902, 0.654902, 0.654902, 1 )
 text = "<"
 flat = true
@@ -122,6 +202,28 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/StaticBody2D"]
 position = Vector2( 512, 580 )
-shape = SubResource( 6 )
+shape = SubResource( 7 )
+
+[node name="Player" type="KinematicBody2D" parent="."]
+position = Vector2( -100, 502 )
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 8 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Player"]
+frames = SubResource( 20 )
+animation = "run"
+frame = 4
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2( 0, 30 )
+shape = SubResource( 21 )
+
+[node name="move_tween" type="Tween" parent="Player"]
+
+[node name="EnemyTimer" type="Timer" parent="."]
+[connection signal="pressed" from="UI/Menu/Start/StartMenu/Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="UI/Menu/Start/StartMenu/Start" to="UI/Menu" method="_on_Start_pressed"]
+[connection signal="pressed" from="UI/Menu/BackToStart/BackToStart" to="." method="_on_BackToStart_pressed"]
 [connection signal="pressed" from="UI/Menu/BackToStart/BackToStart" to="UI/Menu" method="_on_BackToStart_pressed"]
+[connection signal="timeout" from="EnemyTimer" to="." method="_on_EnemyTimer_timeout"]
