@@ -19,8 +19,11 @@ func _on_Start_pressed():
 	get_node("Start").move(Vector2(-600, 0))
 	get_node("Title").move(Vector2(0, -300))
 	get_node("BackToStart").move(Vector2(0, 64))
+	get_node("Score").move(Vector2(0, 200))
 
 func _on_BackToStart_pressed():
 	get_node("Start").move(Vector2(0, 0))
 	get_node("Title").move(Vector2(0, 0))
 	get_node("BackToStart").move(Vector2(0, 0))
+	get_node("Restart").move(Vector2(0,-100))
+	get_node("Score").move(Vector2(0, -200))
