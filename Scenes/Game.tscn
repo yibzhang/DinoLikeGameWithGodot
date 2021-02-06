@@ -17,115 +17,115 @@
 size = 80
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=26]
+[sub_resource type="DynamicFont" id=2]
 size = 150
 font_data = ExtResource( 2 )
 
-[sub_resource type="StyleBoxEmpty" id=2]
+[sub_resource type="StyleBoxEmpty" id=3]
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=4]
 size = 48
 font_data = ExtResource( 2 )
 
-[sub_resource type="StyleBoxEmpty" id=4]
-
-[sub_resource type="DynamicFont" id=5]
-size = 48
-font_data = ExtResource( 2 )
+[sub_resource type="StyleBoxEmpty" id=5]
 
 [sub_resource type="DynamicFont" id=6]
 size = 48
 font_data = ExtResource( 2 )
 
-[sub_resource type="StyleBoxEmpty" id=24]
+[sub_resource type="DynamicFont" id=7]
+size = 48
+font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=23]
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="DynamicFont" id=9]
 size = 50
 font_data = ExtResource( 2 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 649, 3.99219 )
 
-[sub_resource type="CircleShape2D" id=22]
+[sub_resource type="CircleShape2D" id=11]
 radius = 121.0
-
-[sub_resource type="AtlasTexture" id=8]
-flags = 4
-atlas = ExtResource( 7 )
-region = Rect2( 0, 0, 325, 324 )
-
-[sub_resource type="AtlasTexture" id=9]
-flags = 4
-atlas = ExtResource( 7 )
-region = Rect2( 325, 0, 325, 324 )
-
-[sub_resource type="AtlasTexture" id=10]
-flags = 4
-atlas = ExtResource( 7 )
-region = Rect2( 650, 0, 325, 324 )
-
-[sub_resource type="AtlasTexture" id=11]
-flags = 4
-atlas = ExtResource( 7 )
-region = Rect2( 975, 0, 325, 324 )
 
 [sub_resource type="AtlasTexture" id=12]
 flags = 4
 atlas = ExtResource( 7 )
-region = Rect2( 1300, 0, 325, 324 )
+region = Rect2( 0, 0, 325, 324 )
 
 [sub_resource type="AtlasTexture" id=13]
 flags = 4
 atlas = ExtResource( 7 )
-region = Rect2( 1625, 0, 325, 324 )
+region = Rect2( 325, 0, 325, 324 )
 
 [sub_resource type="AtlasTexture" id=14]
 flags = 4
 atlas = ExtResource( 7 )
-region = Rect2( 1950, 0, 325, 324 )
+region = Rect2( 650, 0, 325, 324 )
 
 [sub_resource type="AtlasTexture" id=15]
 flags = 4
 atlas = ExtResource( 7 )
-region = Rect2( 2275, 0, 325, 324 )
+region = Rect2( 975, 0, 325, 324 )
 
 [sub_resource type="AtlasTexture" id=16]
 flags = 4
 atlas = ExtResource( 7 )
-region = Rect2( 0, 0, 325, 324 )
+region = Rect2( 1300, 0, 325, 324 )
 
 [sub_resource type="AtlasTexture" id=17]
 flags = 4
 atlas = ExtResource( 7 )
-region = Rect2( 325, 0, 325, 324 )
+region = Rect2( 1625, 0, 325, 324 )
 
 [sub_resource type="AtlasTexture" id=18]
 flags = 4
 atlas = ExtResource( 7 )
-region = Rect2( 650, 0, 325, 324 )
+region = Rect2( 1950, 0, 325, 324 )
 
 [sub_resource type="AtlasTexture" id=19]
 flags = 4
 atlas = ExtResource( 7 )
+region = Rect2( 2275, 0, 325, 324 )
+
+[sub_resource type="AtlasTexture" id=20]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 325, 324 )
+
+[sub_resource type="AtlasTexture" id=21]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 325, 0, 325, 324 )
+
+[sub_resource type="AtlasTexture" id=22]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 650, 0, 325, 324 )
+
+[sub_resource type="AtlasTexture" id=23]
+flags = 4
+atlas = ExtResource( 7 )
 region = Rect2( 975, 0, 325, 324 )
 
-[sub_resource type="SpriteFrames" id=20]
+[sub_resource type="SpriteFrames" id=24]
 animations = [ {
-"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
+"frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ) ],
 "loop": true,
 "name": "run",
 "speed": 15.0
 }, {
-"frames": [ SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ) ],
+"frames": [ SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ) ],
 "loop": false,
 "name": "jump",
 "speed": 5.0
 } ]
 
-[sub_resource type="CircleShape2D" id=21]
+[sub_resource type="CircleShape2D" id=25]
 radius = 120.0
 
-[sub_resource type="RectangleShape2D" id=25]
+[sub_resource type="RectangleShape2D" id=26]
 extents = Vector2( 10, 100 )
 
 [node name="Game" type="Node2D"]
@@ -173,7 +173,7 @@ margin_left = 445.0
 margin_top = -200.0
 margin_right = 579.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 26 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.654902, 0.654902, 0.654902, 1 )
 text = "0"
 align = 1
@@ -199,8 +199,8 @@ __meta__ = {
 [node name="Start" type="Button" parent="UI/Menu/Start/StartMenu"]
 margin_right = 256.0
 margin_bottom = 64.0
-custom_styles/focus = SubResource( 2 )
-custom_fonts/font = SubResource( 3 )
+custom_styles/focus = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0.654902, 0.654902, 0.654902, 1 )
 text = "Start"
 flat = true
@@ -209,8 +209,8 @@ flat = true
 margin_top = 68.0
 margin_right = 256.0
 margin_bottom = 132.0
-custom_styles/focus = SubResource( 4 )
-custom_fonts/font = SubResource( 5 )
+custom_styles/focus = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0.654902, 0.654902, 0.654902, 1 )
 text = "Quit"
 flat = true
@@ -224,7 +224,7 @@ script = ExtResource( 6 )
 margin_left = 960.0
 margin_top = -64.0
 margin_right = 1024.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0.654902, 0.654902, 0.654902, 1 )
 text = "<"
 flat = true
@@ -242,8 +242,8 @@ margin_left = 376.0
 margin_top = -100.0
 margin_right = 666.0
 margin_bottom = -32.0
-custom_styles/focus = SubResource( 24 )
-custom_fonts/font = SubResource( 23 )
+custom_styles/focus = SubResource( 8 )
+custom_fonts/font = SubResource( 9 )
 custom_colors/font_color = Color( 0.654902, 0.654902, 0.654902, 1 )
 text = "Start Again"
 flat = true
@@ -261,7 +261,7 @@ collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/StaticBody2D"]
 position = Vector2( 512, 580 )
-shape = SubResource( 7 )
+shape = SubResource( 10 )
 
 [node name="Player" type="KinematicBody2D" parent="."]
 position = Vector2( -100, 502 )
@@ -273,17 +273,17 @@ script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
 position = Vector2( 0, 30 )
-shape = SubResource( 22 )
+shape = SubResource( 11 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Player"]
-frames = SubResource( 20 )
+frames = SubResource( 24 )
 animation = "run"
-frame = 4
+frame = 7
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2( 0, 30 )
-shape = SubResource( 21 )
+shape = SubResource( 25 )
 
 [node name="move_tween" type="Tween" parent="Player"]
 
@@ -300,7 +300,7 @@ script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Scoreboard"]
 position = Vector2( -10, 480 )
-shape = SubResource( 25 )
+shape = SubResource( 26 )
 [connection signal="pressed" from="UI/Menu/Start/StartMenu/Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="UI/Menu/Start/StartMenu/Start" to="UI/Menu" method="_on_Start_pressed"]
 [connection signal="pressed" from="UI/Menu/BackToStart/BackToStart" to="." method="_on_BackToStart_pressed"]

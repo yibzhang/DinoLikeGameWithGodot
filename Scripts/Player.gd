@@ -16,11 +16,16 @@ func _physics_process(delta):
 	velocity.x = 0
 	if(gameOver):
 		velocity = Vector2(0,0)
+		$AnimatedSprite.stop()
 	else:
 		velocity.y += gravity * delta
 	velocity = move_and_slide_with_snap(velocity, Vector2.DOWN, Vector2.UP)
 	if is_on_floor() and Input.is_action_just_pressed("jump") and !gameOver:
 		velocity.y = -gravity * gravityVelocityRate
+	if !is_on_floor():
+		$AnimatedSprite.play('jump')
+	else:
+		$AnimatedSprite.play('run')
 
 func move(target):
 	var move_tween = get_node("move_tween")
