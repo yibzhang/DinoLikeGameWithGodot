@@ -19,7 +19,7 @@ func _physics_process(delta):
 		$AnimatedSprite.stop()
 	else:
 		velocity.y += gravity * delta
-	velocity = move_and_slide_with_snap(velocity, Vector2.DOWN, Vector2.UP)
+		velocity = move_and_slide_with_snap(velocity, Vector2.DOWN, Vector2.UP)
 	if is_on_floor() and Input.is_action_just_pressed("jump") and !gameOver:
 		velocity.y = -gravity * gravityVelocityRate
 	if !is_on_floor():
@@ -27,15 +27,12 @@ func _physics_process(delta):
 	else:
 		$AnimatedSprite.play('run')
 
+func _on_Area2D_body_entered(body):
+	if("enemy" in body.get_groups()):
+		emit_signal("game_over")
+		gameOver = 1
+
 func move(target):
 	var move_tween = get_node("move_tween")
 	move_tween.interpolate_property(self, "position", position, target, 2, Tween.TRANS_QUINT, Tween.EASE_OUT);
 	move_tween.start()
-
-func _on_Area2D_body_entered(body):
-	if("enemy" in body.get_groups()):
-		emit_signal("game_over")
-
-func _on_Player_game_over():
-	gameOver = 1
-	

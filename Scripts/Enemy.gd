@@ -9,7 +9,7 @@ func _ready():
 func _physics_process(delta):
 	var collision = move_and_collide(velocity * delta)
 	if collision:
-		if collision.collider.name == "Player":
+		if "player" in collision.collider.get_groups():
 			velocity.x = 0
 	
 func _on_VisibilityNotifier2D_screen_exited():
