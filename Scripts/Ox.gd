@@ -8,6 +8,7 @@ onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") 
 
 signal game_over
 signal hit_coin(coinName)
+signal jump
 var gameOver
 
 var energy = maxEnergy
@@ -27,10 +28,7 @@ func _physics_process(delta):
 		velocity = move_and_slide_with_snap(velocity, Vector2.DOWN, Vector2.UP)
 	if is_on_floor() and Input.is_action_just_pressed("jump") and !gameOver:
 		velocity.y = -gravity * gravityVelocityRate
-	if !is_on_floor():
-		$AnimatedSprite.play('jump')
-	else:
-		$AnimatedSprite.play('run')
+		emit_signal('jump')
 
 func _on_Area2D_body_entered(body):
 	if("coin" in body.get_groups()):
@@ -56,3 +54,13 @@ func reset_energy():
 
 func update_energybar(energyValue):
 	$Energybar.value = energyValue
+
+func swap_free():
+	$AnimatedSprite.play('disappear')
+	yield($AnimatedSprite, "animation_finished")
+	queue_free()
+
+func _on_Ox_jump():
+	$AnimatedSprite.play('jump')
+	yield($AnimatedSprite, "animation_finished")
+	$AnimatedSprite.play('run')

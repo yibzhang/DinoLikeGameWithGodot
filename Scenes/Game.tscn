@@ -44,7 +44,7 @@ size = 50
 font_data = ExtResource( 2 )
 
 [sub_resource type="RectangleShape2D" id=11]
-extents = Vector2( 649, 3.99219 )
+extents = Vector2( 800, 4 )
 
 [sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 10, 100 )
@@ -177,12 +177,6 @@ collision_mask = 15
 position = Vector2( 512, 580 )
 shape = SubResource( 11 )
 
-[node name="EnemyTimer" type="Timer" parent="."]
-wait_time = 3.0
-
-[node name="EnemySpawnPos" type="Position2D" parent="."]
-position = Vector2( 1100, 550 )
-
 [node name="Scoreboard" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 2
@@ -191,11 +185,24 @@ script = ExtResource( 11 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Scoreboard"]
 position = Vector2( -10, 480 )
 shape = SubResource( 12 )
+
+[node name="EnemyTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="EnemySpawnPos" type="Position2D" parent="."]
+position = Vector2( 1100, 550 )
+
+[node name="CoinTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="CoinSpawnPos" type="Position2D" parent="."]
+position = Vector2( 1200, 550 )
 [connection signal="pressed" from="UI/Menu/Start/StartMenu/Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="UI/Menu/Start/StartMenu/Start" to="UI/Menu" method="_on_Start_pressed"]
 [connection signal="pressed" from="UI/Menu/BackToStart/BackToStart" to="." method="_on_BackToStart_pressed"]
 [connection signal="pressed" from="UI/Menu/BackToStart/BackToStart" to="UI/Menu" method="_on_BackToStart_pressed"]
 [connection signal="pressed" from="UI/Menu/Restart/Restart" to="." method="_on_Restart_pressed"]
 [connection signal="pressed" from="UI/Menu/Restart/Restart" to="UI/Menu/Restart" method="_on_Restart_pressed"]
-[connection signal="timeout" from="EnemyTimer" to="." method="_on_EnemyTimer_timeout"]
 [connection signal="body_entered" from="Scoreboard" to="." method="_on_Scoreboard_body_entered"]
+[connection signal="timeout" from="EnemyTimer" to="." method="_on_EnemyTimer_timeout"]
+[connection signal="timeout" from="CoinTimer" to="." method="_on_CoinTimer_timeout"]

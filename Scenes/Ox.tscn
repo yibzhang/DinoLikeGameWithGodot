@@ -1,7 +1,10 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Sprites/ox.png" type="Texture" id=1]
-[ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Ox.gd" type="Script" id=2]
+[ext_resource path="res://Images/lifebar_bg.png" type="Texture" id=3]
+[ext_resource path="res://Images/lifebar_fill.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/fog.png" type="Texture" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 120.0
@@ -66,10 +69,55 @@ flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 850, 900, 850, 450 )
 
-[sub_resource type="SpriteFrames" id=14]
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 375, 375 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 375, 0, 375, 375 )
+
+[sub_resource type="AtlasTexture" id=16]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 750, 0, 375, 375 )
+
+[sub_resource type="AtlasTexture" id=17]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 0, 375, 375, 375 )
+
+[sub_resource type="AtlasTexture" id=18]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 375, 375, 375, 375 )
+
+[sub_resource type="AtlasTexture" id=19]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 750, 375, 375, 375 )
+
+[sub_resource type="AtlasTexture" id=20]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 0, 750, 375, 375 )
+
+[sub_resource type="AtlasTexture" id=21]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 375, 750, 375, 375 )
+
+[sub_resource type="AtlasTexture" id=22]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 750, 750, 375, 375 )
+
+[sub_resource type="SpriteFrames" id=23]
 animations = [ {
 "frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
-"loop": true,
+"loop": false,
 "name": "jump",
 "speed": 5.0
 }, {
@@ -77,12 +125,17 @@ animations = [ {
 "loop": true,
 "name": "run",
 "speed": 15.0
+}, {
+"frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ) ],
+"loop": false,
+"name": "disappear",
+"speed": 10.0
 } ]
 
-[sub_resource type="CircleShape2D" id=15]
+[sub_resource type="CircleShape2D" id=24]
 radius = 125.0
 
-[node name="OX" type="KinematicBody2D" groups=[
+[node name="Ox" type="KinematicBody2D" groups=[
 "player",
 ]]
 position = Vector2( -100, 502 )
@@ -95,9 +148,11 @@ position = Vector2( 0, 30 )
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, 20 )
 scale = Vector2( 0.7, 0.7 )
-frames = SubResource( 14 )
-animation = "jump"
+frames = SubResource( 23 )
+animation = "run"
+frame = 1
 playing = true
 
 [node name="move_tween" type="Tween" parent="."]
@@ -107,5 +162,20 @@ position = Vector2( 0, 30 )
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 15 )
+shape = SubResource( 24 )
+
+[node name="Energybar" type="TextureProgress" parent="."]
+margin_left = -220.0
+margin_top = -171.906
+margin_right = 176.0
+margin_bottom = -118.906
+rect_scale = Vector2( 0.5, 0.5 )
+max_value = 2.0
+value = 2.0
+texture_under = ExtResource( 3 )
+texture_progress = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="jump" from="." to="." method="_on_Ox_jump"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
