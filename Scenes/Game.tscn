@@ -44,7 +44,7 @@ size = 50
 font_data = ExtResource( 2 )
 
 [sub_resource type="RectangleShape2D" id=11]
-extents = Vector2( 800, 4 )
+extents = Vector2( 881.455, 4 )
 
 [sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 10, 100 )
@@ -70,7 +70,7 @@ margin_top = 133.0
 margin_right = 1024.0
 margin_bottom = 233.0
 custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 0.654902, 0.654902, 0.654902, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Run Horse Run"
 align = 1
 valign = 1
@@ -89,7 +89,7 @@ margin_top = -200.0
 margin_right = 579.0
 margin_bottom = 40.0
 custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 0.654902, 0.654902, 0.654902, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "0"
 align = 1
 valign = 1
@@ -116,7 +116,7 @@ margin_right = 256.0
 margin_bottom = 64.0
 custom_styles/focus = SubResource( 3 )
 custom_fonts/font = SubResource( 4 )
-custom_colors/font_color = Color( 0.654902, 0.654902, 0.654902, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Start"
 flat = true
 
@@ -126,7 +126,7 @@ margin_right = 256.0
 margin_bottom = 132.0
 custom_styles/focus = SubResource( 5 )
 custom_fonts/font = SubResource( 6 )
-custom_colors/font_color = Color( 0.654902, 0.654902, 0.654902, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Quit"
 flat = true
 
@@ -141,7 +141,7 @@ margin_top = -64.0
 margin_right = 1021.0
 custom_styles/focus = SubResource( 7 )
 custom_fonts/font = SubResource( 8 )
-custom_colors/font_color = Color( 0.654902, 0.654902, 0.654902, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Back"
 flat = true
 __meta__ = {
@@ -160,7 +160,7 @@ margin_right = 666.0
 margin_bottom = -32.0
 custom_styles/focus = SubResource( 9 )
 custom_fonts/font = SubResource( 10 )
-custom_colors/font_color = Color( 0.654902, 0.654902, 0.654902, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Start Again"
 flat = true
 __meta__ = {
@@ -196,7 +196,7 @@ position = Vector2( 1100, 550 )
 wait_time = 5.0
 
 [node name="CoinSpawnPos" type="Position2D" parent="."]
-position = Vector2( 1200, 550 )
+position = Vector2( 1285.4, 550 )
 [connection signal="pressed" from="UI/Menu/Start/StartMenu/Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="UI/Menu/Start/StartMenu/Start" to="UI/Menu" method="_on_Start_pressed"]
 [connection signal="pressed" from="UI/Menu/BackToStart/BackToStart" to="." method="_on_BackToStart_pressed"]

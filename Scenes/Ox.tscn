@@ -152,7 +152,7 @@ position = Vector2( 0, 20 )
 scale = Vector2( 0.7, 0.7 )
 frames = SubResource( 23 )
 animation = "run"
-frame = 1
+frame = 2
 playing = true
 
 [node name="move_tween" type="Tween" parent="."]

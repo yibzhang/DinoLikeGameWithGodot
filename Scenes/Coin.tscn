@@ -6,23 +6,23 @@
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 116, 116 )
+region = Rect2( 464, 116, 116, 116 )
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 464, 116, 116, 116 )
+region = Rect2( 0, 0, 116, 116 )
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ SubResource( 1 ) ],
 "loop": true,
-"name": "Horse",
+"name": "Ox",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 2 ) ],
 "loop": true,
-"name": "Ox",
+"name": "Horse",
 "speed": 5.0
 } ]
 
@@ -32,7 +32,7 @@ radius = 50.0
 [node name="Coin" type="KinematicBody2D" groups=[
 "coin",
 ]]
-scale = Vector2( 0.8, 0.8 )
+scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]

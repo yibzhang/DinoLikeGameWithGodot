@@ -16,6 +16,7 @@ func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
 
 func break_free():
+	velocity.x = 0
 	$AnimatedSprite.play('break')
 	yield($AnimatedSprite, "animation_finished")
 	queue_free()
