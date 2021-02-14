@@ -171,7 +171,7 @@ __meta__ = {
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 2147483656
-collision_mask = 15
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 512, 580 )
@@ -195,14 +195,15 @@ position = Vector2( 1100, 550 )
 [node name="CoinTimer" type="Timer" parent="."]
 wait_time = 5.0
 
-[node name="CoinSpawnPos" type="Position2D" parent="."]
-position = Vector2( 1285.4, 550 )
+[node name="SpellpaperTimer" type="Timer" parent="."]
+wait_time = 10.0
 [connection signal="pressed" from="UI/Menu/Start/StartMenu/Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="UI/Menu/Start/StartMenu/Start" to="UI/Menu" method="_on_Start_pressed"]
 [connection signal="pressed" from="UI/Menu/BackToStart/BackToStart" to="." method="_on_BackToStart_pressed"]
 [connection signal="pressed" from="UI/Menu/BackToStart/BackToStart" to="UI/Menu" method="_on_BackToStart_pressed"]
-[connection signal="pressed" from="UI/Menu/Restart/Restart" to="." method="_on_Restart_pressed"]
 [connection signal="pressed" from="UI/Menu/Restart/Restart" to="UI/Menu/Restart" method="_on_Restart_pressed"]
+[connection signal="pressed" from="UI/Menu/Restart/Restart" to="." method="_on_Restart_pressed"]
 [connection signal="body_entered" from="Scoreboard" to="." method="_on_Scoreboard_body_entered"]
 [connection signal="timeout" from="EnemyTimer" to="." method="_on_EnemyTimer_timeout"]
 [connection signal="timeout" from="CoinTimer" to="." method="_on_CoinTimer_timeout"]
+[connection signal="timeout" from="SpellpaperTimer" to="." method="_on_SpellpaperTimer_timeout"]

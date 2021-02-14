@@ -16,7 +16,15 @@ func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
 
 func break_free():
+	$CollisionShape2D.set_deferred("disabled", true);
 	velocity.x = 0
 	$AnimatedSprite.play('break')
+	yield($AnimatedSprite, "animation_finished")
+	queue_free()
+
+func fire_free():
+	$CollisionShape2D.set_deferred("disabled", true);
+	velocity.x = 0
+	$AnimatedSprite.play('fire')
 	yield($AnimatedSprite, "animation_finished")
 	queue_free()

@@ -7,14 +7,22 @@ onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") 
 
 signal game_over
 signal hit_coin(coinName)
+signal hit_spellpaper(spellpaperName)
 signal jump
 signal power_mode_hit
+
 var gameOver
 var powerMode
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
+
+func _input(event):
+	if (event is InputEventScreenTouch) or (event is InputEventMouseButton and event.pressed):
+		if is_on_floor() and !gameOver and !powerMode:
+			velocity.y = -gravity * gravityVelocityRate
+			emit_signal("jump")
 
 func _physics_process(delta):
 	velocity.x = 0
@@ -24,13 +32,13 @@ func _physics_process(delta):
 	else:
 		velocity.y += gravity * delta
 		velocity = move_and_slide_with_snap(velocity, Vector2.DOWN, Vector2.UP)
-	if is_on_floor() and Input.is_action_just_pressed("jump") and !gameOver and !powerMode:
-		velocity.y = -gravity * gravityVelocityRate
-		emit_signal("jump")
 
 func _on_Area2D_body_entered(body):
 	if("coin" in body.get_groups()):
 		emit_signal("hit_coin", body.get_node("AnimatedSprite").animation)
+		body.queue_free()
+	if("spellpaper" in body.get_groups()):
+		emit_signal("hit_spellpaper", body.get_node("AnimatedSprite").animation)
 		body.queue_free()
 	if("enemy" in body.get_groups()):
 		if(powerMode):
