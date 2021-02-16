@@ -26,7 +26,7 @@ region = Rect2( 105, 105, 105, 105 )
 [sub_resource type="AtlasTexture" id=5]
 flags = 4
 atlas = ExtResource( 2 )
-region = Rect2( 464, 116, 116, 116 )
+region = Rect2( 0, 0, 116, 116 )
 
 [sub_resource type="AtlasTexture" id=6]
 flags = 4
@@ -51,7 +51,7 @@ region = Rect2( 105, 105, 105, 105 )
 [sub_resource type="AtlasTexture" id=10]
 flags = 4
 atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 116, 116 )
+region = Rect2( 464, 116, 116, 116 )
 
 [sub_resource type="SpriteFrames" id=11]
 animations = [ {
@@ -62,12 +62,12 @@ animations = [ {
 }, {
 "frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
 "loop": false,
-"name": "Ox",
+"name": "Horse",
 "speed": 10.0
 }, {
 "frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
 "loop": false,
-"name": "Horse",
+"name": "Ox",
 "speed": 10.0
 } ]
 

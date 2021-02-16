@@ -1,7 +1,7 @@
 extends Node2D
 
 var score = 0
-var animals = ["Horse", "Ox"]
+var animals = []
 #var animals = ["Horse"]
 var coinCollected = 1
 var enemyVelocityX = -200
@@ -9,9 +9,59 @@ var coinVelocityX = -300
 var spellpaperVelocityX = -400
 var playerPos = Vector2(200, 502)
 
+const CONFIG_FILE = "user://config.json"
+var passcode="fwegfuywe7r632r732fdjghfvjhfesedwfcdewqyhfewjf"
+var gameData:Dictionary = {}
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	load_game()
+	init_animals()
+	init_highscore()
+	update_highscore()
+	print(gameData)
+	
+func save_game():
+	var file = File.new()
+	file.open_encrypted_with_pass(CONFIG_FILE, File.WRITE, passcode)
+	file.store_var(to_json(gameData), true)
+	file.close()
+
+func load_game():
+	var file = File.new()
+	if file.file_exists(CONFIG_FILE):
+		file.open_encrypted_with_pass(CONFIG_FILE, File.READ, passcode)
+		var loadParam = parse_json(file.get_var(true));
+		file.close()
+		if loadParam != null:
+			gameData = loadParam;
+	# if game saving file not exists, create one
+	else:
+		save_game()
+
+func init_animals():
+	if(!gameData.has("animals")):
+		gameData["animals"] = ["Ox"]
+		save_game()
+	else:
+		if(gameData["animals"].size() == 0):
+			gameData["animals"] = ["Ox"]
+			save_game()
+	animals = gameData["animals"]
+
+func init_highscore():
+	if(!gameData.has("HighScore")):
+		gameData["HighScore"] = 0
+		save_game()
+
+func update_highscore():
+	var highScoreLabel = get_node("UI/Menu/HighScore/score")
+	if(score > gameData.HighScore):
+		gameData.HighScore = score
+		save_game()
+		highScoreLabel.text = str(score)
+	else:
+		highScoreLabel.text = str(gameData["HighScore"])
 
 func _on_Start_pressed():
 	var animal = animals[randi()%animals.size()]
@@ -42,26 +92,7 @@ func hit_coin_handle(coinName):
 			coinCollected += 1;
 			add_coin_collection(coinName, coinCollected)
 		if(coinCollected == 3):
-			# super power mode
-			# set timer faster
-			free_coin()
-			#free_enemy()
-			stop_timer()
-			$EnemyTimer.wait_time = 0.2
-			enemyVelocityX = -1000
-			continue_enemy_move()
-			get_tree().get_nodes_in_group("player")[0].powerMode = 1
-			$EnemyTimer.start()
-			yield(get_tree().create_timer(4.0), "timeout")
-			stop_timer()
-			free_enemy()
-			yield(get_tree().create_timer(1.0), "timeout")
-			$EnemyTimer.wait_time = 3
-			start_timer()
-			enemyVelocityX = -200
-			get_tree().get_nodes_in_group("player")[0].powerMode = 0
-			free_coin_collection()
-			add_coin_collection(coinName, coinCollected)
+			start_power_mode()
 
 func hit_spellpaper_handle(spellpaperName):
 	print(spellpaperName)
@@ -71,6 +102,7 @@ func power_mode_hit_handle():
 	add_score()
 		
 func game_over_handle():
+	update_highscore()
 	get_node("UI/Menu/Restart").move(Vector2(0, 300))
 	stop_timer()
 	stop_player_move()
@@ -79,6 +111,7 @@ func game_over_handle():
 	stop_spellpaper_move()
 
 func _on_BackToStart_pressed():
+	update_highscore()
 	stop_timer()
 	reset_score()
 	free_player()
@@ -118,6 +151,8 @@ func _on_Scoreboard_body_entered(body):
 func add_score():
 	score += 1;
 	update_score()
+	if((score%50 == 0) and (score>0)):
+		boss_time()
 
 func reset_score():
 	score = 0
@@ -129,7 +164,7 @@ func update_score():
 func add_coin_collection(coinType, num):
 	var collection = load("res://Scenes/Collection.tscn").instance()
 	add_child(collection)
-	collection.position = Vector2(60 + (num - 1) * 120, 60)
+	collection.position = Vector2(60 + (num - 1) * 120, 80)
 	collection.get_node("AnimatedSprite").play(coinType)
 
 func free_coin_collection():
@@ -247,5 +282,59 @@ func stop_timer():
 	$CoinTimer.stop()
 	$SpellpaperTimer.stop()
 	
+func _on_Quit_pressed():
+	get_tree().quit()
 
+func boss_time():
+	var player = get_tree().get_nodes_in_group("player")
+	# if it's in power mode then stop power mode
+	if(player[0].powerMode):
+		stop_power_mode()
+	# boss time
+	print("boss time")
+	free_enemy()
+	free_coin()
+	free_spellpaper()
+	stop_timer()
+	# stop all timer expect spell paper
+	$SpellpaperTimer.start()
 
+func start_power_mode():
+	var player = get_tree().get_nodes_in_group("player")
+	# can't go back to start during power mode
+	get_node("UI/Menu/BackToStart").hide()
+	free_coin()
+	stop_timer()
+
+	# make enemy move faster
+	enemyVelocityX = -1000
+	continue_enemy_move()
+	$EnemyTimer.wait_time = 0.2
+	$EnemyTimer.start()
+	
+	# set player power mode
+	player[0].powerMode = 1
+	$PowerModeTimer.start()
+
+func stop_power_mode():
+	var player = get_tree().get_nodes_in_group("player");
+	# recover backtostart button
+	get_node("UI/Menu/BackToStart").show()
+	free_enemy()
+	stop_timer()
+	
+	# recover enemy speed
+	enemyVelocityX = -200
+	$EnemyTimer.wait_time = 3
+	start_timer()
+
+	# recover coin collection
+	free_coin_collection()
+	add_coin_collection(player[0].name, coinCollected)
+
+	# unset player power mode
+	player[0].powerMode = 0
+	$PowerModeTimer.stop()
+
+func _on_PowerModeTimer_timeout():
+	stop_power_mode()
