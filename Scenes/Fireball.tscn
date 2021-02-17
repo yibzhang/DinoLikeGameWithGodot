@@ -44,12 +44,14 @@ height = 149.245
 "fireball",
 ]]
 scale = Vector2( 0.5, 0.5 )
+collision_layer = 64
+collision_mask = 130
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 6 )
 animation = "fire"
-frame = 3
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

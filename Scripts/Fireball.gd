@@ -12,6 +12,10 @@ func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
 
 func _on_Fireball_body_entered(body):
+	if("boss" in body.get_groups()):
+		body.get_hit()
+		queue_free()
+	
 	if("enemy" in body.get_groups()):
 		body.fire_free()
 		get_tree().get_root().get_node("Game").add_score()

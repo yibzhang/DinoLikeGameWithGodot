@@ -1,22 +1,23 @@
 extends KinematicBody2D
 
 var velocity = Vector2()
+onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * 6
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	velocity.x = -200;
+	velocity.x = -200
 
 func _physics_process(delta):
-	var collision = move_and_collide(velocity * delta)
-	if collision:
-		if "player" in collision.collider.get_groups():
-			velocity.x = 0
+	velocity.y += gravity * delta
+	velocity = move_and_slide_with_snap(velocity, Vector2.DOWN, Vector2.UP)
 	
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
 
 func break_free():
 	$CollisionShape2D.set_deferred("disabled", true);
+	$CollisionShape2D2.set_deferred("disabled", true);
+	$CollisionShape2D3.set_deferred("disabled", true);
 	velocity.x = 0
 	$AnimatedSprite.play('break')
 	yield($AnimatedSprite, "animation_finished")
@@ -24,6 +25,8 @@ func break_free():
 
 func fire_free():
 	$CollisionShape2D.set_deferred("disabled", true);
+	$CollisionShape2D2.set_deferred("disabled", true);
+	$CollisionShape2D3.set_deferred("disabled", true);
 	velocity.x = 0
 	$AnimatedSprite.play('fire')
 	yield($AnimatedSprite, "animation_finished")

@@ -1,8 +1,9 @@
 extends Node2D
 
 var score = 0
+var bossList = ["Horse"]
+var bossCounter = 0
 var animals = []
-#var animals = ["Horse"]
 var coinCollected = 1
 var enemyVelocityX = -200
 var coinVelocityX = -300
@@ -19,7 +20,6 @@ func _ready():
 	init_animals()
 	init_highscore()
 	update_highscore()
-	print(gameData)
 	
 func save_game():
 	var file = File.new()
@@ -95,7 +95,6 @@ func hit_coin_handle(coinName):
 			start_power_mode()
 
 func hit_spellpaper_handle(spellpaperName):
-	print(spellpaperName)
 	spawn_fireball(spellpaperName)
 
 func power_mode_hit_handle():
@@ -284,21 +283,7 @@ func stop_timer():
 	
 func _on_Quit_pressed():
 	get_tree().quit()
-
-func boss_time():
-	var player = get_tree().get_nodes_in_group("player")
-	# if it's in power mode then stop power mode
-	if(player[0].powerMode):
-		stop_power_mode()
-	# boss time
-	print("boss time")
-	free_enemy()
-	free_coin()
-	free_spellpaper()
-	stop_timer()
-	# stop all timer expect spell paper
-	$SpellpaperTimer.start()
-
+	
 func start_power_mode():
 	var player = get_tree().get_nodes_in_group("player")
 	# can't go back to start during power mode
@@ -338,3 +323,22 @@ func stop_power_mode():
 
 func _on_PowerModeTimer_timeout():
 	stop_power_mode()
+
+func boss_time():
+	var player = get_tree().get_nodes_in_group("player")
+	# if it's in power mode then stop power mode
+	if(player[0].powerMode):
+		stop_power_mode()
+	# boss time
+	print("boss time")
+	free_enemy()
+	free_coin()
+	free_spellpaper()
+	stop_timer()
+	# stop all timer expect spell paper
+	$SpellpaperTimer.start()
+	# spawn the boss
+	var boss = load("res://Scenes/Boss" + bossList[bossCounter] + ".tscn").instance()
+	#add_child(boss)
+	get_parent().call_deferred("add_child", boss)
+	boss.position = $BossSpawnPos.position

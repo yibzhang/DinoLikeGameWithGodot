@@ -61,8 +61,8 @@ extents = Vector2( 10, 100 )
 script = ExtResource( 9 )
 
 [node name="frame" type="Sprite" parent="."]
-position = Vector2( 510.531, 289.207 )
-scale = Vector2( 2.06915, 2.9304 )
+position = Vector2( 512.129, 288.104 )
+scale = Vector2( 2.04776, 2.87868 )
 texture = ExtResource( 1 )
 
 [node name="UI" type="Node2D" parent="."]
@@ -202,7 +202,7 @@ __meta__ = {
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 2147483656
-collision_mask = 7
+collision_mask = 135
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 512, 580 )
@@ -221,7 +221,10 @@ shape = SubResource( 14 )
 wait_time = 3.0
 
 [node name="EnemySpawnPos" type="Position2D" parent="."]
-position = Vector2( 1100, 550 )
+position = Vector2( 1100, 540 )
+
+[node name="BossSpawnPos" type="Position2D" parent="."]
+position = Vector2( 849.2, 447.06 )
 
 [node name="CoinTimer" type="Timer" parent="."]
 wait_time = 5.0
@@ -236,8 +239,8 @@ wait_time = 4.0
 [connection signal="pressed" from="UI/Menu/Start/StartMenu/Quit" to="." method="_on_Quit_pressed"]
 [connection signal="pressed" from="UI/Menu/BackToStart/BackToStart" to="." method="_on_BackToStart_pressed"]
 [connection signal="pressed" from="UI/Menu/BackToStart/BackToStart" to="UI/Menu" method="_on_BackToStart_pressed"]
-[connection signal="pressed" from="UI/Menu/Restart/Restart" to="UI/Menu/Restart" method="_on_Restart_pressed"]
 [connection signal="pressed" from="UI/Menu/Restart/Restart" to="." method="_on_Restart_pressed"]
+[connection signal="pressed" from="UI/Menu/Restart/Restart" to="UI/Menu/Restart" method="_on_Restart_pressed"]
 [connection signal="body_entered" from="Scoreboard" to="." method="_on_Scoreboard_body_entered"]
 [connection signal="timeout" from="EnemyTimer" to="." method="_on_EnemyTimer_timeout"]
 [connection signal="timeout" from="CoinTimer" to="." method="_on_CoinTimer_timeout"]
