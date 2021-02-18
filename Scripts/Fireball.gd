@@ -17,5 +17,5 @@ func _on_Fireball_body_entered(body):
 		queue_free()
 	
 	if("enemy" in body.get_groups()):
-		body.fire_free()
+		body.hit_free($AnimatedSprite.animation)
 		get_tree().get_root().get_node("Game").add_score()

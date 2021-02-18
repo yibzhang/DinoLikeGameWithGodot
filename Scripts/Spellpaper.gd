@@ -13,3 +13,11 @@ func _physics_process(delta):
 			
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
+
+func set_spellpaper_type(animalName):
+	if(animalName == "Horse"):
+		$AnimatedSprite.play("fire")
+	elif(animalName == "Ox"):
+		$AnimatedSprite.play("wind")
+	else:
+		$AnimatedSprite.play("fire")

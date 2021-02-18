@@ -224,7 +224,7 @@ wait_time = 3.0
 position = Vector2( 1100, 540 )
 
 [node name="BossSpawnPos" type="Position2D" parent="."]
-position = Vector2( 849.2, 447.06 )
+position = Vector2( 872.2, 447.06 )
 
 [node name="CoinTimer" type="Timer" parent="."]
 wait_time = 5.0
@@ -239,8 +239,8 @@ wait_time = 4.0
 [connection signal="pressed" from="UI/Menu/Start/StartMenu/Quit" to="." method="_on_Quit_pressed"]
 [connection signal="pressed" from="UI/Menu/BackToStart/BackToStart" to="." method="_on_BackToStart_pressed"]
 [connection signal="pressed" from="UI/Menu/BackToStart/BackToStart" to="UI/Menu" method="_on_BackToStart_pressed"]
-[connection signal="pressed" from="UI/Menu/Restart/Restart" to="." method="_on_Restart_pressed"]
 [connection signal="pressed" from="UI/Menu/Restart/Restart" to="UI/Menu/Restart" method="_on_Restart_pressed"]
+[connection signal="pressed" from="UI/Menu/Restart/Restart" to="." method="_on_Restart_pressed"]
 [connection signal="body_entered" from="Scoreboard" to="." method="_on_Scoreboard_body_entered"]
 [connection signal="timeout" from="EnemyTimer" to="." method="_on_EnemyTimer_timeout"]
 [connection signal="timeout" from="CoinTimer" to="." method="_on_CoinTimer_timeout"]

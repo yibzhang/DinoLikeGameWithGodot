@@ -77,3 +77,14 @@ func _on_Ox_jump():
 	$AnimatedSprite.play('jump')
 	yield($AnimatedSprite, "animation_finished")
 	$AnimatedSprite.play('run')
+
+func boss_fireball_hit():
+	if(energy > 0):
+		energy -= 1
+		update_energybar(energy)
+	else:
+		emit_signal("game_over")
+		gameOver = 1	
+
+
+

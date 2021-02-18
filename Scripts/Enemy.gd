@@ -23,11 +23,11 @@ func break_free():
 	yield($AnimatedSprite, "animation_finished")
 	queue_free()
 
-func fire_free():
+func hit_free(fireballName):
 	$CollisionShape2D.set_deferred("disabled", true);
 	$CollisionShape2D2.set_deferred("disabled", true);
 	$CollisionShape2D3.set_deferred("disabled", true);
 	velocity.x = 0
-	$AnimatedSprite.play('fire')
+	$AnimatedSprite.play(fireballName)
 	yield($AnimatedSprite, "animation_finished")
 	queue_free()

@@ -16,10 +16,19 @@ var gameData:Dictionary = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+
 	load_game()
 	init_animals()
 	init_highscore()
 	update_highscore()
+
+func clear_game_record():
+	var file = File.new()
+	gameData["animals"] = ["Ox"]
+	gameData["HighScore"] = 0
+	file.open_encrypted_with_pass(CONFIG_FILE, File.WRITE, passcode)
+	file.store_var(to_json(gameData), true)
+	file.close()
 	
 func save_game():
 	var file = File.new()
@@ -118,6 +127,7 @@ func _on_BackToStart_pressed():
 	free_coin()
 	free_coin_collection()
 	free_spellpaper()
+	free_boss()
 	
 func _on_Restart_pressed():
 	start_timer()
@@ -127,6 +137,7 @@ func _on_Restart_pressed():
 	free_coin()
 	free_coin_collection()
 	free_spellpaper()
+	free_boss()
 	add_coin_collection(get_tree().get_nodes_in_group("player")[0].name, coinCollected)
 		
 func _on_EnemyTimer_timeout():
@@ -252,6 +263,7 @@ func spawn_spellpaper():
 	var spellpaper = load("res://Scenes/Spellpaper.tscn").instance()
 	add_child(spellpaper)
 	spellpaper.position = $EnemySpawnPos.position
+	spellpaper.set_spellpaper_type(animals[randi()%animals.size()])
 
 func free_spellpaper():
 	for spellpaper in get_tree().get_nodes_in_group("spellpaper"):
@@ -269,6 +281,7 @@ func spawn_fireball(spellpaperName):
 	var fireball = load("res://Scenes/Fireball.tscn").instance()
 	fireball.position = playerPos
 	fireball.get_node("AnimatedSprite").play(spellpaperName)
+	fireball.get_node(spellpaperName).set_deferred("disabled", false);
 	get_parent().call_deferred("add_child", fireball)
 
 func start_timer():
@@ -337,8 +350,28 @@ func boss_time():
 	stop_timer()
 	# stop all timer expect spell paper
 	$SpellpaperTimer.start()
+	spawn_boss()
+
+func boss_killed():
+	var boss = get_tree().get_nodes_in_group("boss")
+	var newAnimal = boss[0].name.substr(4, -1)
+	# add killed boss into animal list
+	if(!animals.has(newAnimal)):
+		animals.append(newAnimal)
+		gameData["animals"] = animals
+		save_game()
+	# free boss
+	boss[0].queue_free()
+	# recover game
+	start_timer()
+
+func spawn_boss():
 	# spawn the boss
 	var boss = load("res://Scenes/Boss" + bossList[bossCounter] + ".tscn").instance()
 	#add_child(boss)
 	get_parent().call_deferred("add_child", boss)
 	boss.position = $BossSpawnPos.position
+	
+func free_boss():
+	for boss in get_tree().get_nodes_in_group("boss"):
+		boss.queue_free()

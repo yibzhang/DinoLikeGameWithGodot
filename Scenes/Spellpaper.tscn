@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Sprites/spellpaper_fire.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Spellpaper.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/spellpaper_wind.png" type="Texture" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -23,15 +24,40 @@ flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 105, 105, 105, 105 )
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 105, 105 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 105, 0, 105, 105 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 105, 105, 105 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 105, 105, 105, 105 )
+
+[sub_resource type="SpriteFrames" id=9]
 animations = [ {
 "frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
 "loop": true,
 "name": "fire",
 "speed": 10.0
+}, {
+"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"loop": true,
+"name": "wind",
+"speed": 10.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 28.715, 50.3104 )
 
 [node name="Spellpaper" type="KinematicBody2D" groups=[
@@ -43,13 +69,13 @@ collision_mask = 9
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 5 )
+frames = SubResource( 9 )
 animation = "fire"
-frame = 2
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 6 )
+shape = SubResource( 10 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
