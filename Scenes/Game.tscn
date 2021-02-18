@@ -66,8 +66,14 @@ font_data = ExtResource( 2 )
 size = 20
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=19]
+[sub_resource type="DynamicFont" id=17]
 size = 32
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxEmpty" id=18]
+
+[sub_resource type="DynamicFont" id=19]
+size = 64
 font_data = ExtResource( 2 )
 
 [sub_resource type="StyleBoxEmpty" id=20]
@@ -76,16 +82,10 @@ font_data = ExtResource( 2 )
 size = 64
 font_data = ExtResource( 2 )
 
-[sub_resource type="StyleBoxEmpty" id=22]
-
-[sub_resource type="DynamicFont" id=23]
-size = 64
-font_data = ExtResource( 2 )
-
-[sub_resource type="RectangleShape2D" id=17]
+[sub_resource type="RectangleShape2D" id=22]
 extents = Vector2( 881.455, 4 )
 
-[sub_resource type="RectangleShape2D" id=18]
+[sub_resource type="RectangleShape2D" id=23]
 extents = Vector2( 10, 100 )
 
 [node name="Game" type="Node2D"]
@@ -282,7 +282,7 @@ margin_left = 89.0
 margin_top = 40.0
 margin_right = 394.0
 margin_bottom = 79.0
-custom_fonts/font = SubResource( 19 )
+custom_fonts/font = SubResource( 17 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Clear game record?"
 __meta__ = {
@@ -294,8 +294,8 @@ margin_left = 71.0
 margin_top = 160.0
 margin_right = 192.0
 margin_bottom = 245.0
-custom_styles/focus = SubResource( 20 )
-custom_fonts/font = SubResource( 21 )
+custom_styles/focus = SubResource( 18 )
+custom_fonts/font = SubResource( 19 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Yes"
 flat = true
@@ -308,8 +308,8 @@ margin_left = 326.0
 margin_top = 160.0
 margin_right = 423.0
 margin_bottom = 249.0
-custom_styles/focus = SubResource( 22 )
-custom_fonts/font = SubResource( 23 )
+custom_styles/focus = SubResource( 20 )
+custom_fonts/font = SubResource( 21 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "No"
 flat = true
@@ -325,7 +325,7 @@ collision_mask = 135
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 512, 580 )
-shape = SubResource( 17 )
+shape = SubResource( 22 )
 
 [node name="Scoreboard" type="Area2D" parent="."]
 collision_layer = 16
@@ -334,7 +334,7 @@ script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Scoreboard"]
 position = Vector2( -10, 480 )
-shape = SubResource( 18 )
+shape = SubResource( 23 )
 
 [node name="EnemyTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -353,16 +353,16 @@ wait_time = 10.0
 
 [node name="PowerModeTimer" type="Timer" parent="."]
 wait_time = 4.0
-[connection signal="pressed" from="UI/Menu/Start/StartMenu/Start" to="UI/Menu" method="_on_Start_pressed"]
 [connection signal="pressed" from="UI/Menu/Start/StartMenu/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="UI/Menu/Start/StartMenu/Start" to="UI/Menu" method="_on_Start_pressed"]
 [connection signal="pressed" from="UI/Menu/Start/StartMenu/ResetRecord" to="UI/Menu" method="_on_ResetRecord_pressed"]
 [connection signal="pressed" from="UI/Menu/Start/StartMenu/Quit" to="." method="_on_Quit_pressed"]
-[connection signal="pressed" from="UI/Menu/BackToStart/BackToStart" to="UI/Menu" method="_on_BackToStart_pressed"]
 [connection signal="pressed" from="UI/Menu/BackToStart/BackToStart" to="." method="_on_BackToStart_pressed"]
+[connection signal="pressed" from="UI/Menu/BackToStart/BackToStart" to="UI/Menu" method="_on_BackToStart_pressed"]
 [connection signal="pressed" from="UI/Menu/Restart/Restart" to="UI/Menu/Restart" method="_on_Restart_pressed"]
 [connection signal="pressed" from="UI/Menu/Restart/Restart" to="." method="_on_Restart_pressed"]
-[connection signal="pressed" from="UI/Menu/ResetRecordWindow/Yes" to="UI/Menu" method="_on_Yes_pressed"]
 [connection signal="pressed" from="UI/Menu/ResetRecordWindow/Yes" to="." method="_on_Yes_pressed"]
+[connection signal="pressed" from="UI/Menu/ResetRecordWindow/Yes" to="UI/Menu" method="_on_Yes_pressed"]
 [connection signal="pressed" from="UI/Menu/ResetRecordWindow/No" to="UI/Menu" method="_on_No_pressed"]
 [connection signal="body_entered" from="Scoreboard" to="." method="_on_Scoreboard_body_entered"]
 [connection signal="timeout" from="EnemyTimer" to="." method="_on_EnemyTimer_timeout"]

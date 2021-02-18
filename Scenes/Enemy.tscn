@@ -1,8 +1,9 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Sprites/arrow_sheet.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Enemy.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/arraw_fire_sheet.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/arrow_wind_sheet.png" type="Texture" id=4]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -29,77 +30,67 @@ flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 200, 400, 200, 400 )
 
-[sub_resource type="AtlasTexture" id=18]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 200, 400 )
-
-[sub_resource type="AtlasTexture" id=19]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 200, 0, 200, 400 )
-
-[sub_resource type="AtlasTexture" id=20]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 400, 0, 200, 400 )
-
-[sub_resource type="AtlasTexture" id=21]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 400, 200, 400 )
-
-[sub_resource type="AtlasTexture" id=22]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 200, 400, 200, 400 )
-
-[sub_resource type="AtlasTexture" id=23]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 400, 400, 200, 400 )
-
 [sub_resource type="AtlasTexture" id=6]
 flags = 4
-atlas = ExtResource( 1 )
+atlas = ExtResource( 4 )
 region = Rect2( 0, 0, 200, 400 )
 
 [sub_resource type="AtlasTexture" id=7]
 flags = 4
-atlas = ExtResource( 1 )
+atlas = ExtResource( 4 )
 region = Rect2( 200, 0, 200, 400 )
 
 [sub_resource type="AtlasTexture" id=8]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 400, 0, 200, 400 )
+atlas = ExtResource( 4 )
+region = Rect2( 0, 400, 200, 400 )
 
 [sub_resource type="AtlasTexture" id=9]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 400, 200, 400 )
+atlas = ExtResource( 4 )
+region = Rect2( 200, 400, 200, 400 )
 
 [sub_resource type="AtlasTexture" id=10]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 200, 400, 200, 400 )
+region = Rect2( 0, 0, 200, 400 )
 
 [sub_resource type="AtlasTexture" id=11]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 0, 400, 200, 400 )
+region = Rect2( 200, 0, 200, 400 )
 
 [sub_resource type="AtlasTexture" id=12]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 200, 400, 200, 400 )
+region = Rect2( 400, 0, 200, 400 )
 
 [sub_resource type="AtlasTexture" id=13]
 flags = 4
 atlas = ExtResource( 1 )
+region = Rect2( 0, 400, 200, 400 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 200, 400, 200, 400 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 400, 200, 400 )
+
+[sub_resource type="AtlasTexture" id=16]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 200, 400, 200, 400 )
+
+[sub_resource type="AtlasTexture" id=17]
+flags = 4
+atlas = ExtResource( 1 )
 region = Rect2( 400, 400, 200, 400 )
 
-[sub_resource type="SpriteFrames" id=14]
+[sub_resource type="SpriteFrames" id=18]
 animations = [ {
 "frames": [ SubResource( 1 ) ],
 "loop": true,
@@ -111,24 +102,24 @@ animations = [ {
 "name": "fire",
 "speed": 10.0
 }, {
-"frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ) ],
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
 "loop": true,
 "name": "wind",
-"speed": 5.0
+"speed": 10.0
 }, {
-"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
+"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
 "loop": false,
 "name": "break",
 "speed": 10.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=15]
+[sub_resource type="RectangleShape2D" id=19]
 extents = Vector2( 20.375, 195.749 )
 
-[sub_resource type="RectangleShape2D" id=16]
+[sub_resource type="RectangleShape2D" id=20]
 extents = Vector2( 135.56, 14.8507 )
 
-[sub_resource type="RectangleShape2D" id=17]
+[sub_resource type="RectangleShape2D" id=21]
 extents = Vector2( 120.809, 19.1422 )
 
 [node name="Enemy" type="KinematicBody2D" groups=[
@@ -140,7 +131,7 @@ collision_mask = 73
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 14 )
+frames = SubResource( 18 )
 playing = true
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
@@ -148,15 +139,15 @@ playing = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 6.18719, 7.07109 )
 rotation = 0.191986
-shape = SubResource( 15 )
+shape = SubResource( 19 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2( 0.883902, -9.72268 )
 rotation = -2.26893
-shape = SubResource( 16 )
+shape = SubResource( 20 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
 position = Vector2( -15.026, -8.83884 )
 rotation = -0.959931
-shape = SubResource( 17 )
+shape = SubResource( 21 )
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
