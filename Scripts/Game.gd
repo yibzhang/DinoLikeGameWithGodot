@@ -16,11 +16,11 @@ var gameData:Dictionary = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-
 	load_game()
 	init_animals()
 	init_highscore()
 	update_highscore()
+	update_unlocked()
 
 func clear_game_record():
 	var file = File.new()
@@ -71,6 +71,11 @@ func update_highscore():
 		highScoreLabel.text = str(score)
 	else:
 		highScoreLabel.text = str(gameData["HighScore"])
+
+func update_unlocked():
+	var unlockedAnimals = gameData["animals"]
+	var unlockedNode = get_node("UI/Menu/Unlocked/animals")
+	unlockedNode.text = str(unlockedAnimals)
 
 func _on_Start_pressed():
 	var animal = animals[randi()%animals.size()]
@@ -174,7 +179,7 @@ func update_score():
 func add_coin_collection(coinType, num):
 	var collection = load("res://Scenes/Collection.tscn").instance()
 	add_child(collection)
-	collection.position = Vector2(60 + (num - 1) * 120, 80)
+	collection.position = Vector2(60 + (num - 1) * 120, 120)
 	collection.get_node("AnimatedSprite").play(coinType)
 
 func free_coin_collection():
@@ -261,9 +266,9 @@ func continue_coin_move():
 
 func spawn_spellpaper():
 	var spellpaper = load("res://Scenes/Spellpaper.tscn").instance()
-	add_child(spellpaper)
 	spellpaper.position = $EnemySpawnPos.position
 	spellpaper.set_spellpaper_type(animals[randi()%animals.size()])
+	add_child(spellpaper)
 
 func free_spellpaper():
 	for spellpaper in get_tree().get_nodes_in_group("spellpaper"):
@@ -364,6 +369,8 @@ func boss_killed():
 	boss[0].queue_free()
 	# recover game
 	start_timer()
+	# update unlocked
+	update_unlocked()
 
 func spawn_boss():
 	# spawn the boss
@@ -375,3 +382,8 @@ func spawn_boss():
 func free_boss():
 	for boss in get_tree().get_nodes_in_group("boss"):
 		boss.queue_free()
+
+func _on_ResetRecord_pressed():
+	clear_game_record()
+	update_highscore()
+	update_unlocked()

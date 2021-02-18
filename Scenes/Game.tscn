@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Images/frame.png" type="Texture" id=1]
 [ext_resource path="res://Fonts/MilkyNice.ttf" type="DynamicFontData" id=2]
@@ -25,6 +25,12 @@ font_data = ExtResource( 2 )
 size = 48
 font_data = ExtResource( 2 )
 
+[sub_resource type="StyleBoxEmpty" id=18]
+
+[sub_resource type="DynamicFont" id=17]
+size = 32
+font_data = ExtResource( 2 )
+
 [sub_resource type="StyleBoxEmpty" id=5]
 
 [sub_resource type="DynamicFont" id=6]
@@ -48,6 +54,14 @@ size = 20
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=12]
+size = 20
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=15]
+size = 20
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=16]
 size = 20
 font_data = ExtResource( 2 )
 
@@ -128,10 +142,20 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Start"
 flat = true
 
-[node name="Quit" type="Button" parent="UI/Menu/Start/StartMenu"]
+[node name="ResetRecord" type="Button" parent="UI/Menu/Start/StartMenu"]
 margin_top = 68.0
 margin_right = 256.0
-margin_bottom = 132.0
+margin_bottom = 113.0
+custom_styles/focus = SubResource( 18 )
+custom_fonts/font = SubResource( 17 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Reset Record"
+flat = true
+
+[node name="Quit" type="Button" parent="UI/Menu/Start/StartMenu"]
+margin_top = 117.0
+margin_right = 256.0
+margin_bottom = 181.0
 custom_styles/focus = SubResource( 5 )
 custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -178,13 +202,14 @@ __meta__ = {
 [node name="move_tween" type="Tween" parent="UI/Menu/Restart"]
 
 [node name="HighScore" type="Node2D" parent="UI/Menu"]
+position = Vector2( 4, 0 )
 
 [node name="Label" type="Label" parent="UI/Menu/HighScore"]
 margin_right = 40.0
 margin_bottom = 14.0
 custom_fonts/font = SubResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "HighScore"
+text = "HighScore:"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -196,6 +221,30 @@ margin_bottom = 51.0
 custom_fonts/font = SubResource( 12 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Unlocked" type="Node2D" parent="UI/Menu"]
+position = Vector2( 4, 24 )
+
+[node name="Label" type="Label" parent="UI/Menu/Unlocked"]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 15 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Unlocked:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="animals" type="Label" parent="UI/Menu/Unlocked"]
+margin_left = 120.0
+margin_right = 160.0
+margin_bottom = 24.0
+custom_fonts/font = SubResource( 16 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Ox"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -234,13 +283,14 @@ wait_time = 10.0
 
 [node name="PowerModeTimer" type="Timer" parent="."]
 wait_time = 4.0
-[connection signal="pressed" from="UI/Menu/Start/StartMenu/Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="UI/Menu/Start/StartMenu/Start" to="UI/Menu" method="_on_Start_pressed"]
+[connection signal="pressed" from="UI/Menu/Start/StartMenu/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="UI/Menu/Start/StartMenu/ResetRecord" to="." method="_on_ResetRecord_pressed"]
 [connection signal="pressed" from="UI/Menu/Start/StartMenu/Quit" to="." method="_on_Quit_pressed"]
-[connection signal="pressed" from="UI/Menu/BackToStart/BackToStart" to="." method="_on_BackToStart_pressed"]
 [connection signal="pressed" from="UI/Menu/BackToStart/BackToStart" to="UI/Menu" method="_on_BackToStart_pressed"]
-[connection signal="pressed" from="UI/Menu/Restart/Restart" to="UI/Menu/Restart" method="_on_Restart_pressed"]
+[connection signal="pressed" from="UI/Menu/BackToStart/BackToStart" to="." method="_on_BackToStart_pressed"]
 [connection signal="pressed" from="UI/Menu/Restart/Restart" to="." method="_on_Restart_pressed"]
+[connection signal="pressed" from="UI/Menu/Restart/Restart" to="UI/Menu/Restart" method="_on_Restart_pressed"]
 [connection signal="body_entered" from="Scoreboard" to="." method="_on_Scoreboard_body_entered"]
 [connection signal="timeout" from="EnemyTimer" to="." method="_on_EnemyTimer_timeout"]
 [connection signal="timeout" from="CoinTimer" to="." method="_on_CoinTimer_timeout"]

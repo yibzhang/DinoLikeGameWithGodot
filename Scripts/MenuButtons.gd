@@ -16,7 +16,7 @@ func _ready():
 #	pass
 
 func _on_Start_pressed():
-	get_node("Start").move(Vector2(-600, 0))
+	get_node("Start").move(Vector2(-700, 0))
 	get_node("Title").move(Vector2(0, -300))
 	get_node("BackToStart").move(Vector2(0, 64))
 	get_node("Score").move(Vector2(0, 200))

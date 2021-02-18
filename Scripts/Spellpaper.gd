@@ -16,8 +16,8 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 func set_spellpaper_type(animalName):
 	if(animalName == "Horse"):
-		$AnimatedSprite.play("fire")
-	elif(animalName == "Ox"):
 		$AnimatedSprite.play("wind")
+	elif(animalName == "Ox"):
+		$AnimatedSprite.play("fire")
 	else:
 		$AnimatedSprite.play("fire")
