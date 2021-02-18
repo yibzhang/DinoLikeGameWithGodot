@@ -27,3 +27,12 @@ func _on_BackToStart_pressed():
 	get_node("BackToStart").move(Vector2(0, 0))
 	get_node("Restart").move(Vector2(0,-100))
 	get_node("Score").move(Vector2(0, -200))
+
+func _on_ResetRecord_pressed():
+	get_node("ResetRecordWindow").move(Vector2(260, 250))
+
+func _on_Yes_pressed():
+	get_node("ResetRecordWindow").move(Vector2(260, -450))
+
+func _on_No_pressed():
+	get_node("ResetRecordWindow").move(Vector2(260, -450))

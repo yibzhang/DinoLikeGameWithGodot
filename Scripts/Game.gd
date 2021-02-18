@@ -383,7 +383,7 @@ func free_boss():
 	for boss in get_tree().get_nodes_in_group("boss"):
 		boss.queue_free()
 
-func _on_ResetRecord_pressed():
+func _on_Yes_pressed():
 	clear_game_record()
 	update_highscore()
 	update_unlocked()

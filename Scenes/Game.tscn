@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Images/frame.png" type="Texture" id=1]
 [ext_resource path="res://Fonts/MilkyNice.ttf" type="DynamicFontData" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Scripts/MenuButtons.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/Title.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/BackToStart.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/ResetRecordWindow.gd" type="Script" id=7]
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/Restart.gd" type="Script" id=10]
 [ext_resource path="res://Scripts/Scoreboard.gd" type="Script" id=11]
@@ -25,16 +26,10 @@ font_data = ExtResource( 2 )
 size = 48
 font_data = ExtResource( 2 )
 
-[sub_resource type="StyleBoxEmpty" id=18]
-
-[sub_resource type="DynamicFont" id=17]
-size = 32
-font_data = ExtResource( 2 )
-
 [sub_resource type="StyleBoxEmpty" id=5]
 
 [sub_resource type="DynamicFont" id=6]
-size = 48
+size = 32
 font_data = ExtResource( 2 )
 
 [sub_resource type="StyleBoxEmpty" id=7]
@@ -46,14 +41,20 @@ font_data = ExtResource( 2 )
 [sub_resource type="StyleBoxEmpty" id=9]
 
 [sub_resource type="DynamicFont" id=10]
+size = 48
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxEmpty" id=11]
+
+[sub_resource type="DynamicFont" id=12]
 size = 50
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=13]
 size = 20
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=12]
+[sub_resource type="DynamicFont" id=14]
 size = 20
 font_data = ExtResource( 2 )
 
@@ -65,10 +66,26 @@ font_data = ExtResource( 2 )
 size = 20
 font_data = ExtResource( 2 )
 
-[sub_resource type="RectangleShape2D" id=13]
+[sub_resource type="DynamicFont" id=19]
+size = 32
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxEmpty" id=20]
+
+[sub_resource type="DynamicFont" id=21]
+size = 64
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxEmpty" id=22]
+
+[sub_resource type="DynamicFont" id=23]
+size = 64
+font_data = ExtResource( 2 )
+
+[sub_resource type="RectangleShape2D" id=17]
 extents = Vector2( 881.455, 4 )
 
-[sub_resource type="RectangleShape2D" id=14]
+[sub_resource type="RectangleShape2D" id=18]
 extents = Vector2( 10, 100 )
 
 [node name="Game" type="Node2D"]
@@ -146,8 +163,8 @@ flat = true
 margin_top = 68.0
 margin_right = 256.0
 margin_bottom = 113.0
-custom_styles/focus = SubResource( 18 )
-custom_fonts/font = SubResource( 17 )
+custom_styles/focus = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Reset Record"
 flat = true
@@ -156,8 +173,8 @@ flat = true
 margin_top = 117.0
 margin_right = 256.0
 margin_bottom = 181.0
-custom_styles/focus = SubResource( 5 )
-custom_fonts/font = SubResource( 6 )
+custom_styles/focus = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Quit"
 flat = true
@@ -171,8 +188,8 @@ script = ExtResource( 6 )
 margin_left = 894.0
 margin_top = -64.0
 margin_right = 1021.0
-custom_styles/focus = SubResource( 7 )
-custom_fonts/font = SubResource( 8 )
+custom_styles/focus = SubResource( 9 )
+custom_fonts/font = SubResource( 10 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Back"
 flat = true
@@ -190,8 +207,8 @@ margin_left = 376.0
 margin_top = -100.0
 margin_right = 666.0
 margin_bottom = -32.0
-custom_styles/focus = SubResource( 9 )
-custom_fonts/font = SubResource( 10 )
+custom_styles/focus = SubResource( 11 )
+custom_fonts/font = SubResource( 12 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Start Again"
 flat = true
@@ -207,7 +224,7 @@ position = Vector2( 4, 0 )
 [node name="Label" type="Label" parent="UI/Menu/HighScore"]
 margin_right = 40.0
 margin_bottom = 14.0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 13 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "HighScore:"
 __meta__ = {
@@ -218,7 +235,7 @@ __meta__ = {
 margin_left = 120.0
 margin_right = 160.0
 margin_bottom = 51.0
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 14 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "0"
 __meta__ = {
@@ -249,13 +266,66 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ResetRecordWindow" type="Node2D" parent="UI/Menu"]
+position = Vector2( 260, -450 )
+script = ExtResource( 7 )
+
+[node name="ColorRect" type="ColorRect" parent="UI/Menu/ResetRecordWindow"]
+margin_right = 500.0
+margin_bottom = 300.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Menu/ResetRecordWindow"]
+margin_left = 89.0
+margin_top = 40.0
+margin_right = 394.0
+margin_bottom = 79.0
+custom_fonts/font = SubResource( 19 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Clear game record?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Yes" type="Button" parent="UI/Menu/ResetRecordWindow"]
+margin_left = 71.0
+margin_top = 160.0
+margin_right = 192.0
+margin_bottom = 245.0
+custom_styles/focus = SubResource( 20 )
+custom_fonts/font = SubResource( 21 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Yes"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="No" type="Button" parent="UI/Menu/ResetRecordWindow"]
+margin_left = 326.0
+margin_top = 160.0
+margin_right = 423.0
+margin_bottom = 249.0
+custom_styles/focus = SubResource( 22 )
+custom_fonts/font = SubResource( 23 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "No"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="move_tween" type="Tween" parent="UI/Menu/ResetRecordWindow"]
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 2147483656
 collision_mask = 135
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 512, 580 )
-shape = SubResource( 13 )
+shape = SubResource( 17 )
 
 [node name="Scoreboard" type="Area2D" parent="."]
 collision_layer = 16
@@ -264,7 +334,7 @@ script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Scoreboard"]
 position = Vector2( -10, 480 )
-shape = SubResource( 14 )
+shape = SubResource( 18 )
 
 [node name="EnemyTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -285,12 +355,15 @@ wait_time = 10.0
 wait_time = 4.0
 [connection signal="pressed" from="UI/Menu/Start/StartMenu/Start" to="UI/Menu" method="_on_Start_pressed"]
 [connection signal="pressed" from="UI/Menu/Start/StartMenu/Start" to="." method="_on_Start_pressed"]
-[connection signal="pressed" from="UI/Menu/Start/StartMenu/ResetRecord" to="." method="_on_ResetRecord_pressed"]
+[connection signal="pressed" from="UI/Menu/Start/StartMenu/ResetRecord" to="UI/Menu" method="_on_ResetRecord_pressed"]
 [connection signal="pressed" from="UI/Menu/Start/StartMenu/Quit" to="." method="_on_Quit_pressed"]
 [connection signal="pressed" from="UI/Menu/BackToStart/BackToStart" to="UI/Menu" method="_on_BackToStart_pressed"]
 [connection signal="pressed" from="UI/Menu/BackToStart/BackToStart" to="." method="_on_BackToStart_pressed"]
-[connection signal="pressed" from="UI/Menu/Restart/Restart" to="." method="_on_Restart_pressed"]
 [connection signal="pressed" from="UI/Menu/Restart/Restart" to="UI/Menu/Restart" method="_on_Restart_pressed"]
+[connection signal="pressed" from="UI/Menu/Restart/Restart" to="." method="_on_Restart_pressed"]
+[connection signal="pressed" from="UI/Menu/ResetRecordWindow/Yes" to="UI/Menu" method="_on_Yes_pressed"]
+[connection signal="pressed" from="UI/Menu/ResetRecordWindow/Yes" to="." method="_on_Yes_pressed"]
+[connection signal="pressed" from="UI/Menu/ResetRecordWindow/No" to="UI/Menu" method="_on_No_pressed"]
 [connection signal="body_entered" from="Scoreboard" to="." method="_on_Scoreboard_body_entered"]
 [connection signal="timeout" from="EnemyTimer" to="." method="_on_EnemyTimer_timeout"]
 [connection signal="timeout" from="CoinTimer" to="." method="_on_CoinTimer_timeout"]
