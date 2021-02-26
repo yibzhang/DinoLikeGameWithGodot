@@ -1,7 +1,7 @@
 extends Node2D
 
 var score = 0
-var bossList = ["Horse"]
+var bossList = ["Tiger", "Dog", "Monkey", "Dragon", "Horse", "Ox"]
 var bossCounter = 0
 var animals = []
 var coinCollected = 1
@@ -9,6 +9,7 @@ var enemyVelocityX = -200
 var coinVelocityX = -300
 var spellpaperVelocityX = -400
 var playerPos = Vector2(200, 502)
+var playerPowerMode = 0
 
 const CONFIG_FILE = "user://config.json"
 var passcode="fwegfuywe7r632r732fdjghfvjhfesedwfcdewqyhfewjf"
@@ -21,6 +22,7 @@ func _ready():
 	init_highscore()
 	update_highscore()
 	update_unlocked()
+	animals = ['Dragon']
 
 func clear_game_record():
 	var file = File.new()
@@ -79,9 +81,11 @@ func update_unlocked():
 
 func _on_Start_pressed():
 	var animal = animals[randi()%animals.size()]
+	#print(animals)
 	start_timer()
 	init_player(animal)
 	add_coin_collection(animal, 1)
+	boss_time()
 
 func hit_coin_handle(coinName):
 	var player = get_tree().get_nodes_in_group("player");
@@ -149,14 +153,16 @@ func _on_EnemyTimer_timeout():
 	# before spawn enemy reset player positon
 	reset_player_position()
 	spawn_enemy()
-	#$EnemyTimer.wait_time = randi()%3 + 2
+	if(!playerPowerMode):
+		$EnemyTimer.wait_time = 2 + randi()%4
 
 func _on_CoinTimer_timeout():
 	spawn_coin()
-	$CoinTimer.wait_time = randi()%5 + 5
+	$CoinTimer.wait_time = 5 + randi()%6
 
 func _on_SpellpaperTimer_timeout():
 	spawn_spellpaper()
+	$SpellpaperTimer.wait_time = 5 + randi()%6
 
 func _on_Scoreboard_body_entered(body):
 	# if enemy hits scoreboard, add a score
@@ -316,7 +322,8 @@ func start_power_mode():
 	$EnemyTimer.start()
 	
 	# set player power mode
-	player[0].powerMode = 1
+	playerPowerMode = 1
+	player[0].powerMode = playerPowerMode
 	$PowerModeTimer.start()
 
 func stop_power_mode():
@@ -336,19 +343,21 @@ func stop_power_mode():
 	add_coin_collection(player[0].name, coinCollected)
 
 	# unset player power mode
-	player[0].powerMode = 0
+	playerPowerMode = 0
+	player[0].powerMode = playerPowerMode
 	$PowerModeTimer.stop()
 
 func _on_PowerModeTimer_timeout():
 	stop_power_mode()
 
 func boss_time():
+	add_notification("Boss Time")
 	var player = get_tree().get_nodes_in_group("player")
 	# if it's in power mode then stop power mode
 	if(player[0].powerMode):
 		stop_power_mode()
 	# boss time
-	print("boss time")
+	#print("boss time")
 	free_enemy()
 	free_coin()
 	free_spellpaper()
@@ -357,7 +366,18 @@ func boss_time():
 	$SpellpaperTimer.start()
 	spawn_boss()
 
+func spawn_boss():
+	# spawn the boss
+	var boss = load("res://Scenes/Boss" + bossList[bossCounter] + ".tscn").instance()
+	get_parent().call_deferred("add_child", boss)
+	boss.position = $BossSpawnPos.position
+	
+func free_boss():
+	for boss in get_tree().get_nodes_in_group("boss"):
+		boss.queue_free()
+
 func boss_killed():
+	add_notification("Boss Killed")
 	var boss = get_tree().get_nodes_in_group("boss")
 	var newAnimal = boss[0].name.substr(4, -1)
 	# add killed boss into animal list
@@ -371,19 +391,24 @@ func boss_killed():
 	start_timer()
 	# update unlocked
 	update_unlocked()
+	add_bossCounter()
 
-func spawn_boss():
-	# spawn the boss
-	var boss = load("res://Scenes/Boss" + bossList[bossCounter] + ".tscn").instance()
-	#add_child(boss)
-	get_parent().call_deferred("add_child", boss)
-	boss.position = $BossSpawnPos.position
-	
-func free_boss():
-	for boss in get_tree().get_nodes_in_group("boss"):
-		boss.queue_free()
+func add_bossCounter():
+	if(bossCounter < bossList.size() - 1):
+		bossCounter += 1
+	else:
+		bossCounter = 0
 
+# clear game record
 func _on_Yes_pressed():
 	clear_game_record()
 	update_highscore()
 	update_unlocked()
+	animals = gameData["animals"]
+
+func add_notification(text):
+	var alarm = get_node("UI/Menu/Notification")
+	alarm.get_node("Label").text = text
+	alarm.reset()
+	alarm.start_timer()
+	alarm.move_in()

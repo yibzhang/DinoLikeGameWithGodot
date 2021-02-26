@@ -44,6 +44,8 @@ jump={
 2d_physics/layer_5="scoreboard"
 2d_physics/layer_6="spellpaper"
 2d_physics/layer_7="fireball"
+2d_physics/layer_8="bossfireball"
+2d_physics/layer_9="feet"
 
 [rendering]
 

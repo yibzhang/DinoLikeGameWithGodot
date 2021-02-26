@@ -3,6 +3,7 @@ extends KinematicBody2D
 export var velocity = Vector2()
 export var gravityGain = 6
 export var gravityVelocityRate = 0.67
+export var maxEnergy = 2
 onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * gravityGain
 
 signal game_over
@@ -13,17 +14,19 @@ signal power_mode_hit
 
 var gameOver
 var powerMode
+var energy = maxEnergy
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	$Energybar.max_value = maxEnergy
+	$Energybar.value = maxEnergy
 
 func _input(event):
 	if (event is InputEventScreenTouch) or (event is InputEventMouseButton and event.pressed):
 		if is_on_floor() and !gameOver and !powerMode:
 			velocity.y = -gravity * gravityVelocityRate
 			emit_signal("jump")
-
+			
 func _physics_process(delta):
 	velocity.x = 0
 	if(gameOver):
@@ -45,6 +48,19 @@ func _on_Area2D_body_entered(body):
 			body.break_free()
 			emit_signal("power_mode_hit")
 		else:
+			if(energy > 0):
+				energy -= 1
+				update_energybar(energy)
+				body.break_free();
+			else:
+				emit_signal("game_over")
+				gameOver = 1
+	if("bossfireball" in body.get_groups()):
+		body.queue_free()
+		if(energy > 0):
+			energy -= 1
+			update_energybar(energy)
+		else:
 			emit_signal("game_over")
 			gameOver = 1
 
@@ -53,11 +69,18 @@ func move(target):
 	move_tween.interpolate_property(self, "position", position, target, 2, Tween.TRANS_QUINT, Tween.EASE_OUT);
 	move_tween.start()
 
+func reset_energy():
+	energy = maxEnergy
+	update_energybar(energy)
+
+func update_energybar(energyValue):
+	$Energybar.value = energyValue
+
 func swap_free():
 	$AnimatedSprite.play('disappear')
 	yield($AnimatedSprite, "animation_finished")
 	queue_free()
-	
+
 func _on_Horse_jump():
 	$AnimatedSprite.play('jump')
 	yield($AnimatedSprite, "animation_finished")

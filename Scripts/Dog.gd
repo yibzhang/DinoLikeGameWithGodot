@@ -2,8 +2,8 @@ extends KinematicBody2D
 
 export var velocity = Vector2()
 export var gravityGain = 6
-export var gravityVelocityRate = 0.67
-export var maxEnergy = 3
+export var gravityVelocityRate = 0.70
+export var maxEnergy = 2
 onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * gravityGain
 
 signal game_over
@@ -81,8 +81,7 @@ func swap_free():
 	yield($AnimatedSprite, "animation_finished")
 	queue_free()
 
-func _on_Ox_jump():
+func _on_Dog_jump():
 	$AnimatedSprite.play('jump')
 	yield($AnimatedSprite, "animation_finished")
 	$AnimatedSprite.play('run')
-
