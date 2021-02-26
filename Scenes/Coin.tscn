@@ -6,22 +6,22 @@
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 464, 0, 116, 116 )
+region = Rect2( 348, 0, 116, 116 )
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 348, 0, 116, 116 )
+region = Rect2( 580, 116, 116, 116 )
 
 [sub_resource type="AtlasTexture" id=3]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 580, 0, 116, 116 )
+region = Rect2( 232, 0, 116, 116 )
 
 [sub_resource type="AtlasTexture" id=4]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 232, 116, 116, 116 )
+region = Rect2( 116, 116, 116, 116 )
 
 [sub_resource type="AtlasTexture" id=5]
 flags = 4
@@ -31,17 +31,17 @@ region = Rect2( 0, 0, 116, 116 )
 [sub_resource type="AtlasTexture" id=6]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 0, 116, 116, 116 )
+region = Rect2( 232, 116, 116, 116 )
 
 [sub_resource type="AtlasTexture" id=7]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 348, 116, 116, 116 )
+region = Rect2( 580, 0, 116, 116 )
 
 [sub_resource type="AtlasTexture" id=8]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 232, 0, 116, 116 )
+region = Rect2( 348, 116, 116, 116 )
 
 [sub_resource type="AtlasTexture" id=9]
 flags = 4
@@ -51,38 +51,38 @@ region = Rect2( 116, 0, 116, 116 )
 [sub_resource type="AtlasTexture" id=10]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 116, 116, 116, 116 )
+region = Rect2( 464, 116, 116, 116 )
 
 [sub_resource type="AtlasTexture" id=11]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 580, 116, 116, 116 )
+region = Rect2( 0, 116, 116, 116 )
 
 [sub_resource type="AtlasTexture" id=12]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 464, 116, 116, 116 )
+region = Rect2( 464, 0, 116, 116 )
 
 [sub_resource type="SpriteFrames" id=13]
 animations = [ {
 "frames": [ SubResource( 1 ) ],
 "loop": true,
-"name": "Mouse",
+"name": "Dog",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 2 ) ],
 "loop": true,
-"name": "Dog",
+"name": "Sheep",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 3 ) ],
 "loop": true,
-"name": "Tiger",
+"name": "Pig",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 4 ) ],
 "loop": true,
-"name": "Dragon",
+"name": "Rabbit",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 5 ) ],
@@ -92,17 +92,17 @@ animations = [ {
 }, {
 "frames": [ SubResource( 6 ) ],
 "loop": true,
-"name": "Snake",
+"name": "Dragon",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 7 ) ],
 "loop": true,
-"name": "Rooster",
+"name": "Tiger",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 8 ) ],
 "loop": true,
-"name": "Pig",
+"name": "Rooster",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 9 ) ],
@@ -112,17 +112,17 @@ animations = [ {
 }, {
 "frames": [ SubResource( 10 ) ],
 "loop": true,
-"name": "Rabbit",
+"name": "Ox",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 11 ) ],
 "loop": true,
-"name": "Sheep",
+"name": "Snake",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 12 ) ],
 "loop": true,
-"name": "Ox",
+"name": "Mouse",
 "speed": 5.0
 } ]
 

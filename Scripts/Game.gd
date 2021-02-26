@@ -1,7 +1,7 @@
 extends Node2D
 
 var score = 0
-var bossList = ["Tiger", "Dog", "Monkey", "Dragon", "Horse", "Ox"]
+var bossList = ["Snake", "Dragon", "Sheep", "Dog", "Monkey", "Tiger", "Horse", "Ox"]
 var bossCounter = 0
 var animals = []
 var coinCollected = 1
@@ -22,7 +22,7 @@ func _ready():
 	init_highscore()
 	update_highscore()
 	update_unlocked()
-	animals = ['Dragon']
+	animals = ['Dog']
 
 func clear_game_record():
 	var file = File.new()

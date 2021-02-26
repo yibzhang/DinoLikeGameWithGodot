@@ -1,10 +1,10 @@
 extends KinematicBody2D
 
-export var maxEnergy = 10
+export var maxEnergy = 5
 
 var velocity = Vector2()
-var fireballName = "fire"
-onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var fireballName = "wind"
+onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * 10
 
 var energy = maxEnergy
 
@@ -38,7 +38,7 @@ func spawn_fireball():
 	#print(scaleRatio)
 	var fireball = load("res://Scenes/BossFireball.tscn").instance()
 	fireball.position.x = self.position.x
-	fireball.position.y = self.position.y + 50
+	fireball.position.y = self.position.y + 90
 	fireball.scale = Vector2(1,1)
 	fireball.get_node("AnimatedSprite").play(fireballName)
 	fireball.get_node(fireballName).set_deferred("disabled", false);
