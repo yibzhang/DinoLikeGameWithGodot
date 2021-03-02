@@ -1,77 +1,330 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=68 format=2]
 
 [ext_resource path="res://Sprites/fireball_sheet.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/BossFireball.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/windball_sheet.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/iceball_sheet.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/waterball_sheet.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/fireball1_sheet.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/poisonball_sheet.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/thunderball_sheet.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/fireball2_sheet.png" type="Texture" id=9]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 255, 85 )
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 150, 60 )
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 255, 0, 255, 85 )
+atlas = ExtResource( 7 )
+region = Rect2( 150, 0, 150, 60 )
 
 [sub_resource type="AtlasTexture" id=3]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 510, 0, 255, 85 )
+atlas = ExtResource( 7 )
+region = Rect2( 300, 0, 150, 60 )
 
 [sub_resource type="AtlasTexture" id=4]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 85, 255, 85 )
+atlas = ExtResource( 7 )
+region = Rect2( 0, 60, 150, 60 )
 
 [sub_resource type="AtlasTexture" id=5]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 255, 85, 255, 85 )
+atlas = ExtResource( 7 )
+region = Rect2( 150, 60, 150, 60 )
 
 [sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 300, 60, 150, 60 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 0, 120, 150, 60 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 150, 120, 150, 60 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 100, 0, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 200, 0, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 0, 100, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 100, 100, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=14]
 flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 113, 113 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=15]
 flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 113, 0, 113, 113 )
 
-[sub_resource type="AtlasTexture" id=8]
+[sub_resource type="AtlasTexture" id=16]
 flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 226, 0, 113, 113 )
 
-[sub_resource type="AtlasTexture" id=9]
+[sub_resource type="AtlasTexture" id=17]
 flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 0, 113, 113, 113 )
 
-[sub_resource type="AtlasTexture" id=10]
+[sub_resource type="AtlasTexture" id=18]
 flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 113, 113, 113, 113 )
 
-[sub_resource type="SpriteFrames" id=11]
+[sub_resource type="AtlasTexture" id=19]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 200, 100 )
+
+[sub_resource type="AtlasTexture" id=20]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 200, 0, 200, 100 )
+
+[sub_resource type="AtlasTexture" id=21]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 400, 0, 200, 100 )
+
+[sub_resource type="AtlasTexture" id=22]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 0, 100, 200, 100 )
+
+[sub_resource type="AtlasTexture" id=23]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 200, 100, 200, 100 )
+
+[sub_resource type="AtlasTexture" id=24]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 400, 100, 200, 100 )
+
+[sub_resource type="AtlasTexture" id=25]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 200, 103 )
+
+[sub_resource type="AtlasTexture" id=26]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 200, 0, 200, 103 )
+
+[sub_resource type="AtlasTexture" id=27]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 0, 103, 200, 103 )
+
+[sub_resource type="AtlasTexture" id=28]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 200, 103, 200, 103 )
+
+[sub_resource type="AtlasTexture" id=29]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 255, 85 )
+
+[sub_resource type="AtlasTexture" id=30]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 255, 0, 255, 85 )
+
+[sub_resource type="AtlasTexture" id=31]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 510, 0, 255, 85 )
+
+[sub_resource type="AtlasTexture" id=32]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 85, 255, 85 )
+
+[sub_resource type="AtlasTexture" id=33]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 255, 85, 255, 85 )
+
+[sub_resource type="AtlasTexture" id=34]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 172, 100 )
+
+[sub_resource type="AtlasTexture" id=35]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 172, 0, 172, 100 )
+
+[sub_resource type="AtlasTexture" id=36]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 344, 0, 172, 100 )
+
+[sub_resource type="AtlasTexture" id=37]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 0, 100, 172, 100 )
+
+[sub_resource type="AtlasTexture" id=38]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 172, 100, 172, 100 )
+
+[sub_resource type="AtlasTexture" id=39]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 344, 100, 172, 100 )
+
+[sub_resource type="AtlasTexture" id=40]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 0, 200, 172, 100 )
+
+[sub_resource type="AtlasTexture" id=41]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 172, 200, 172, 100 )
+
+[sub_resource type="AtlasTexture" id=42]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 150, 50 )
+
+[sub_resource type="AtlasTexture" id=43]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 150, 0, 150, 50 )
+
+[sub_resource type="AtlasTexture" id=44]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 300, 0, 150, 50 )
+
+[sub_resource type="AtlasTexture" id=45]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 0, 50, 150, 50 )
+
+[sub_resource type="AtlasTexture" id=46]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 150, 50, 150, 50 )
+
+[sub_resource type="AtlasTexture" id=47]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 300, 50, 150, 50 )
+
+[sub_resource type="AtlasTexture" id=48]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 0, 100, 150, 50 )
+
+[sub_resource type="AtlasTexture" id=49]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 150, 100, 150, 50 )
+
+[sub_resource type="SpriteFrames" id=50]
 animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"loop": true,
+"name": "poison",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
+"loop": true,
+"name": "fire1",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ) ],
+"loop": true,
+"name": "wind",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ) ],
+"loop": true,
+"name": "fire2",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ) ],
+"loop": true,
+"name": "ice",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ) ],
 "loop": true,
 "name": "fire",
 "speed": 10.0
 }, {
-"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
+"frames": [ SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ) ],
 "loop": true,
-"name": "wind",
+"name": "water",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ) ],
+"loop": true,
+"name": "thunder",
 "speed": 10.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=12]
+[sub_resource type="CapsuleShape2D" id=51]
 radius = 25.5224
 height = 149.245
 
-[sub_resource type="CapsuleShape2D" id=13]
+[sub_resource type="CircleShape2D" id=53]
+radius = 35.6091
+
+[sub_resource type="CapsuleShape2D" id=54]
+radius = 41.5309
+height = 91.507
+
+[sub_resource type="CapsuleShape2D" id=55]
+radius = 16.5576
+height = 148.589
+
+[sub_resource type="CapsuleShape2D" id=56]
+radius = 10.6116
+height = 97.4531
+
+[sub_resource type="CapsuleShape2D" id=57]
+height = 128.406
+
+[sub_resource type="CapsuleShape2D" id=58]
+radius = 36.7741
+height = 52.2632
+
+[sub_resource type="CapsuleShape2D" id=52]
 radius = 17.7159
 height = 47.995
 
@@ -85,18 +338,57 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 rotation = -3.14159
 scale = Vector2( 1, -1 )
-frames = SubResource( 11 )
-animation = "wind"
+frames = SubResource( 50 )
+animation = "water"
+frame = 6
 playing = true
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 
 [node name="fire" type="CollisionShape2D" parent="."]
+visible = false
 rotation = 1.5708
-shape = SubResource( 12 )
+shape = SubResource( 51 )
+disabled = true
+
+[node name="fire1" type="CollisionShape2D" parent="."]
+visible = false
+rotation = 1.5708
+shape = SubResource( 53 )
+disabled = true
+
+[node name="fire2" type="CollisionShape2D" parent="."]
+visible = false
+rotation = 1.5708
+shape = SubResource( 54 )
+disabled = true
+
+[node name="ice" type="CollisionShape2D" parent="."]
+visible = false
+rotation = 1.5708
+shape = SubResource( 55 )
+disabled = true
+
+[node name="poison" type="CollisionShape2D" parent="."]
+visible = false
+rotation = 1.5708
+shape = SubResource( 56 )
+disabled = true
+
+[node name="thunder" type="CollisionShape2D" parent="."]
+visible = false
+rotation = 1.5708
+shape = SubResource( 57 )
+disabled = true
+
+[node name="water" type="CollisionShape2D" parent="."]
+visible = false
+rotation = 1.5708
+shape = SubResource( 58 )
 disabled = true
 
 [node name="wind" type="CollisionShape2D" parent="."]
-shape = SubResource( 13 )
+visible = false
+shape = SubResource( 52 )
 disabled = true
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

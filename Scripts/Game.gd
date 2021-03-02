@@ -1,14 +1,26 @@
 extends Node2D
 
 var score = 0
-var bossList = ["Snake", "Dragon", "Sheep", "Dog", "Monkey", "Tiger", "Horse", "Ox"]
+var bossList = [
+	"Pig",
+	"Sheep",
+	"Monkey",
+	"Rooster", 
+	"Mouse", 
+	"Rabbit", 
+	"Dog",
+	"Tiger", 
+	"Horse", 
+	"Ox",
+	"Snake",
+	"Dragon"]
 var bossCounter = 0
 var animals = []
 var coinCollected = 1
 var enemyVelocityX = -200
 var coinVelocityX = -300
 var spellpaperVelocityX = -400
-var playerPos = Vector2(200, 502)
+var playerPos = Vector2(150, 502)
 var playerPowerMode = 0
 
 const CONFIG_FILE = "user://config.json"
@@ -20,14 +32,17 @@ func _ready():
 	load_game()
 	init_animals()
 	init_highscore()
+	init_bossCounter()
 	update_highscore()
 	update_unlocked()
-	animals = ['Dog']
+	update_bossCounter()
+	#animals = ['Dragon']
 
 func clear_game_record():
 	var file = File.new()
 	gameData["animals"] = ["Ox"]
 	gameData["HighScore"] = 0
+	gameData["BossCounter"] = 0
 	file.open_encrypted_with_pass(CONFIG_FILE, File.WRITE, passcode)
 	file.store_var(to_json(gameData), true)
 	file.close()
@@ -65,6 +80,11 @@ func init_highscore():
 		gameData["HighScore"] = 0
 		save_game()
 
+func init_bossCounter():
+	if(!gameData.has("BossCounter")):
+		gameData["BossCounter"] = 0
+		save_game()
+
 func update_highscore():
 	var highScoreLabel = get_node("UI/Menu/HighScore/score")
 	if(score > gameData.HighScore):
@@ -76,8 +96,13 @@ func update_highscore():
 
 func update_unlocked():
 	var unlockedAnimals = gameData["animals"]
-	var unlockedNode = get_node("UI/Menu/Unlocked/animals")
-	unlockedNode.text = str(unlockedAnimals)
+	var unlockedNode = get_node("UI/Menu/Unlocked")
+	unlockedNode.update_unlocked(unlockedAnimals)
+	#var unlockedNode = get_node("UI/Menu/Unlocked/animals")
+	#unlockedNode.text = str(unlockedAnimals)
+
+func update_bossCounter():
+	bossCounter = gameData["BossCounter"]
 
 func _on_Start_pressed():
 	var animal = animals[randi()%animals.size()]
@@ -85,7 +110,7 @@ func _on_Start_pressed():
 	start_timer()
 	init_player(animal)
 	add_coin_collection(animal, 1)
-	boss_time()
+	#boss_time()
 
 func hit_coin_handle(coinName):
 	var player = get_tree().get_nodes_in_group("player");
@@ -225,8 +250,8 @@ func stop_player_move():
 
 func reset_player_position():
 	var player = get_tree().get_nodes_in_group("player")[0]
-	if(player.position.x != 200):
-		player.position.x = 200
+	if(player.position.x != playerPos.x):
+		player.position.x = playerPos.x
 
 func spawn_enemy():
 	var enemy = load("res://Scenes/Enemy.tscn").instance()
@@ -398,6 +423,8 @@ func add_bossCounter():
 		bossCounter += 1
 	else:
 		bossCounter = 0
+	gameData["BossCounter"] = bossCounter
+	save_game()
 
 # clear game record
 func _on_Yes_pressed():
@@ -405,6 +432,7 @@ func _on_Yes_pressed():
 	update_highscore()
 	update_unlocked()
 	animals = gameData["animals"]
+	bossCounter = gameData["BossCounter"]
 
 func add_notification(text):
 	var alarm = get_node("UI/Menu/Notification")

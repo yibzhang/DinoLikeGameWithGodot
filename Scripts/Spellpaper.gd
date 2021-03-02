@@ -19,5 +19,25 @@ func set_spellpaper_type(animalName):
 		$AnimatedSprite.play("wind")
 	elif(animalName == "Ox"):
 		$AnimatedSprite.play("fire")
+	elif(animalName == "Rabbit"):
+		$AnimatedSprite.play("ice")
+	elif(animalName == "Pig"):
+		$AnimatedSprite.play("fire2")
+	elif(animalName == "Snake"):
+		$AnimatedSprite.play("poison")
+	elif(animalName == "Rooster"):
+		$AnimatedSprite.play("fire")
+	elif(animalName == "Monkey"):
+		$AnimatedSprite.play("fire")
+	elif(animalName == "Sheep"):
+		$AnimatedSprite.play("water")
+	elif(animalName == "Mouse"):
+		$AnimatedSprite.play("poison")
+	elif(animalName == "Tiger"):
+		$AnimatedSprite.play("thunder")
+	elif(animalName == "Dog"):
+		$AnimatedSprite.play("fire")
+	elif(animalName == "Dragon"):
+		$AnimatedSprite.play("fire1")
 	else:
 		$AnimatedSprite.play("fire")

@@ -1,0 +1,119 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://Sprites/rooster.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/BossRooster.gd" type="Script" id=2]
+[ext_resource path="res://Images/lifebar_bg.png" type="Texture" id=4]
+[ext_resource path="res://Images/lifebar_fill.png" type="Texture" id=5]
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 308, 381 )
+
+[sub_resource type="AtlasTexture" id=16]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 308, 0, 308, 381 )
+
+[sub_resource type="AtlasTexture" id=17]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 616, 0, 308, 381 )
+
+[sub_resource type="AtlasTexture" id=18]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 924, 0, 308, 381 )
+
+[sub_resource type="AtlasTexture" id=19]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 381, 308, 381 )
+
+[sub_resource type="AtlasTexture" id=20]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 308, 381, 308, 381 )
+
+[sub_resource type="AtlasTexture" id=21]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 616, 381, 308, 381 )
+
+[sub_resource type="AtlasTexture" id=22]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 924, 381, 308, 381 )
+
+[sub_resource type="AtlasTexture" id=23]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 762, 308, 381 )
+
+[sub_resource type="AtlasTexture" id=24]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 308, 762, 308, 381 )
+
+[sub_resource type="AtlasTexture" id=25]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 616, 762, 308, 381 )
+
+[sub_resource type="AtlasTexture" id=26]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 762, 308, 381 )
+
+[sub_resource type="SpriteFrames" id=13]
+animations = [ {
+"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ) ],
+"loop": true,
+"name": "run",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 26 ), SubResource( 26 ), SubResource( 26 ), SubResource( 26 ) ],
+"loop": false,
+"name": "standup",
+"speed": 8.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 86.4605, 154.82 )
+
+[node name="BossRooster" type="KinematicBody2D" groups=[
+"boss",
+]]
+scale = Vector2( 0.6, 0.6 )
+collision_layer = 2
+collision_mask = 65
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -36.0454, 1.59096 )
+frames = SubResource( 13 )
+animation = "run"
+frame = 6
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -62.8796, 20.6915 )
+shape = SubResource( 14 )
+
+[node name="FireballTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="Energybar" type="TextureProgress" parent="."]
+margin_left = -142.231
+margin_top = -197.953
+margin_right = 253.769
+margin_bottom = -144.953
+rect_scale = Vector2( 0.5, 0.5 )
+max_value = 10.0
+value = 10.0
+texture_under = ExtResource( 4 )
+texture_progress = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="timeout" from="FireballTimer" to="." method="_on_FireballTimer_timeout"]

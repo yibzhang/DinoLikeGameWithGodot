@@ -3,7 +3,7 @@ extends KinematicBody2D
 export var maxEnergy = 5
 
 var velocity = Vector2()
-var fireballName = "wind"
+var fireballName = "poison"
 onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * 10
 
 var energy = maxEnergy

@@ -28,6 +28,11 @@ func hit_free(fireballName):
 	$CollisionShape2D2.set_deferred("disabled", true);
 	$CollisionShape2D3.set_deferred("disabled", true);
 	velocity.x = 0
-	$AnimatedSprite.play(fireballName)
+	if("fire" in fireballName):
+		$AnimatedSprite.play("fire")
+	elif("wind" in fireballName):
+		$AnimatedSprite.play("wind")		
+	else:
+		$AnimatedSprite.play('break')
 	yield($AnimatedSprite, "animation_finished")
 	queue_free()

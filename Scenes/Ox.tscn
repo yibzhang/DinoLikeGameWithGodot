@@ -150,7 +150,7 @@ position = Vector2( 1.7818, 23.5635 )
 scale = Vector2( 0.7, 0.7 )
 frames = SubResource( 22 )
 animation = "run"
-frame = 3
+frame = 4
 playing = true
 
 [node name="Area2D" type="Area2D" parent="AnimatedSprite"]
@@ -166,10 +166,10 @@ shape = SubResource( 23 )
 [node name="move_tween" type="Tween" parent="."]
 
 [node name="Energybar" type="TextureProgress" parent="."]
-margin_left = -220.0
-margin_top = -171.906
-margin_right = 176.0
-margin_bottom = -118.906
+margin_left = -83.6923
+margin_top = -164.779
+margin_right = 312.308
+margin_bottom = -111.779
 rect_scale = Vector2( 0.6, 0.5 )
 max_value = 2.0
 value = 2.0

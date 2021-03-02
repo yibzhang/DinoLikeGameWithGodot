@@ -3,7 +3,7 @@ extends KinematicBody2D
 export var maxEnergy = 10
 
 var velocity = Vector2()
-var fireballName = "fire"
+var fireballName = ["fire","fire1","fire2","water","wind","ice","poison","thunder"]
 onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var energy = maxEnergy
@@ -40,9 +40,11 @@ func spawn_fireball():
 	fireball.position.x = self.position.x
 	fireball.position.y = self.position.y + 50
 	fireball.scale = Vector2(1,1)
-	fireball.get_node("AnimatedSprite").play(fireballName)
-	fireball.get_node(fireballName).set_deferred("disabled", false);
+	var fireballType = fireballName[randi()%fireballName.size()]
+	fireball.get_node("AnimatedSprite").play(fireballType)
+	fireball.get_node(fireballType).set_deferred("disabled", false);
 	get_parent().get_node("Game").add_child(fireball)
+
 
 func update_energybar(energyValue):
 	$Energybar.value = energyValue
