@@ -15,6 +15,7 @@ func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
 
 func break_free():
+	$BreakAudio.play()
 	$CollisionShape2D.set_deferred("disabled", true);
 	$CollisionShape2D2.set_deferred("disabled", true);
 	$CollisionShape2D3.set_deferred("disabled", true);
@@ -30,9 +31,12 @@ func hit_free(fireballName):
 	velocity.x = 0
 	if("fire" in fireballName):
 		$AnimatedSprite.play("fire")
+		$FireAudio.play()
 	elif("wind" in fireballName):
-		$AnimatedSprite.play("wind")		
+		$AnimatedSprite.play("wind")
+		$WindAudio.play()
 	else:
 		$AnimatedSprite.play('break')
+		$BreakAudio.play()
 	yield($AnimatedSprite, "animation_finished")
 	queue_free()

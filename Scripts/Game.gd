@@ -105,6 +105,9 @@ func update_bossCounter():
 	bossCounter = gameData["BossCounter"]
 
 func _on_Start_pressed():
+	$HitCoinAudio.play()
+	$BackgroundAudio.play()
+	$Background.gameOver = false
 	var animal = animals[randi()%animals.size()]
 	#print(animals)
 	start_timer()
@@ -117,6 +120,7 @@ func hit_coin_handle(coinName):
 	# if player name is not same as coin name, animal swap
 	# else add coin into coin collection
 	if(player[0].name != coinName):
+		$VanishAudio.play()
 		free_coin_collection()
 		add_coin_collection(coinName, coinCollected)
 		player[0].swap_free()
@@ -131,6 +135,7 @@ func hit_coin_handle(coinName):
 		continue_enemy_move()
 		continue_coin_move()
 	else:
+		$HitCoinAudio.play()
 		if(coinCollected < 3):
 			coinCollected += 1;
 			add_coin_collection(coinName, coinCollected)
@@ -144,6 +149,9 @@ func power_mode_hit_handle():
 	add_score()
 		
 func game_over_handle():
+	$GameoverAudio.play()
+	$BackgroundAudio.stop()
+	$Background.gameOver = true
 	update_highscore()
 	get_node("UI/Menu/Restart").move(Vector2(0, 300))
 	stop_timer()
@@ -153,6 +161,8 @@ func game_over_handle():
 	stop_spellpaper_move()
 
 func _on_BackToStart_pressed():
+	$BackgroundAudio.stop()
+	$Background.gameOver = true
 	update_highscore()
 	stop_timer()
 	reset_score()
@@ -164,6 +174,8 @@ func _on_BackToStart_pressed():
 	free_boss()
 	
 func _on_Restart_pressed():
+	$BackgroundAudio.play()
+	$Background.gameOver = false
 	start_timer()
 	reset_score()
 	reset_player()

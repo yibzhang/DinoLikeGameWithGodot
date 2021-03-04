@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/EnemyWind.wav-4b2fc97c49487fb723a7d911837977b9.sample"
+
+[deps]
+
+source_file="res://Sounds/EnemyWind.wav"
+dest_files=[ "res://.import/EnemyWind.wav-4b2fc97c49487fb723a7d911837977b9.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
