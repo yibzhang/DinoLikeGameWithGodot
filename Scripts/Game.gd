@@ -13,7 +13,8 @@ var bossList = [
 	"Horse", 
 	"Ox",
 	"Snake",
-	"Dragon"]
+	"Dragon",
+	]
 var bossCounter = 0
 var animals = []
 var coinCollected = 1

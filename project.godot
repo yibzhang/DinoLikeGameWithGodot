@@ -8,14 +8,19 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node",
+"class": "AdMob",
+"language": "GDScript",
+"path": "res://admob-lib/admob.gd"
+} ]
 _global_script_class_icons={
-
+"AdMob": "res://admob-lib/icon.png"
 }
 
 [application]
 
-config/name="Run Horse Run"
+config/name="Zodiac Run"
 run/main_scene="res://Scenes/Game.tscn"
 config/icon="res://icon.png"
 
